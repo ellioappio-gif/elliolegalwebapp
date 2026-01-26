@@ -3,8 +3,9 @@
 import { ProtectedRoute } from '../../auth/ProtectedRoute'
 import { useAuth } from '../../auth/AuthContext'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { User, Mail, Phone, MapPin, Lock, Bell, Save, LogOut } from 'lucide-react'
-import { useState } from 'react'
+import { useState } from 'react' 
 
 function SettingsContent() {
   const { user, logout } = useAuth()
@@ -176,10 +177,10 @@ function SettingsContent() {
               <p className="text-sm text-gray-600">Update your login password</p>
             </button>
 
-            <button className="w-full text-left px-4 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+            <Link href="/dashboard/security" className="block w-full text-left px-4 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
               <p className="font-medium text-gray-900">Two-Factor Authentication</p>
               <p className="text-sm text-gray-600">Add extra security to your account</p>
-            </button>
+            </Link>
 
             <button className="w-full text-left px-4 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
               <p className="font-medium text-gray-900">Active Sessions</p>
