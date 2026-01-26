@@ -4,7 +4,7 @@ import { ProtectedRoute } from '../auth/ProtectedRoute'
 import { useAuth } from '../auth/AuthContext'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { LogOut, FileText, Brain, MessageSquare, Settings, User } from 'lucide-react'
+import { LogOut, FileText, Brain, MessageSquare, Settings, User, Bell, Heart, DollarSign } from 'lucide-react'
 
 function DashboardContent() {
   const { user, logout } = useAuth()
@@ -43,6 +43,13 @@ function DashboardContent() {
                 <p className="text-gray-600 text-xs">{user?.email}</p>
               </div>
               <Link
+                href="/dashboard/notifications"
+                className="relative flex items-center justify-center p-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                <Bell className="w-5 h-5" />
+                <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-red-500"></span>
+              </Link>
+              <Link
                 href="/dashboard/settings"
                 className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
               >
@@ -70,12 +77,13 @@ function DashboardContent() {
         </div>
 
         {/* Quick actions grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
           {[
             { icon: FileText, title: 'New Question', description: 'Ask about contracts or legal matters', href: '/dashboard/ask' },
             { icon: Brain, title: 'Analyze Document', description: 'Upload and review documents', href: '/dashboard/documents' },
             { icon: MessageSquare, title: 'Chat with AI', description: 'Have a conversation', href: '/dashboard/chat' },
             { icon: User, title: 'Find Lawyer', description: 'Connect with a specialist', href: '/dashboard/lawyers' },
+            { icon: Heart, title: 'Favorites', description: 'Your saved lawyers', href: '/dashboard/favorites' },
           ].map((action, i) => (
             <Link
               key={i}
@@ -108,6 +116,19 @@ function DashboardContent() {
                 <p className="text-sm text-gray-600">{feature.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Pricing CTA */}
+        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200 p-8 mb-8">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2">Upgrade to Pro</h3>
+              <p className="text-gray-600">Get unlimited questions, priority support, and more</p>
+            </div>
+            <Link href="/pricing" className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors whitespace-nowrap">
+              View Plans
+            </Link>
           </div>
         </div>
 

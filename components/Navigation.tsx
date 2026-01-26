@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link';
-import { useAuth } from '@/app/auth/AuthContext';
+import { useAuth } from '../app/auth/AuthContext';
 
 export default function Navigation() {
   const { user } = useAuth();
@@ -12,19 +12,22 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
             <Link href="/" className="text-2xl font-bold text-blue-600 hover:text-blue-700 transition">
-              Ellio Solutions
+              ellio legal
             </Link>
           </div>
           <div className="hidden md:flex space-x-8">
-            <a href="#features" className="text-gray-700 hover:text-blue-600 transition">
+            <Link href="/pricing" className="text-gray-700 hover:text-blue-600 transition font-medium">
+              Pricing
+            </Link>
+            <a href="/#features" className="text-gray-700 hover:text-blue-600 transition">
               Features
             </a>
-            <a href="#services" className="text-gray-700 hover:text-blue-600 transition">
+            <a href="/#services" className="text-gray-700 hover:text-blue-600 transition">
               Services
             </a>
-            <a href="#contact" className="text-gray-700 hover:text-blue-600 transition">
+            <Link href="/contact" className="text-gray-700 hover:text-blue-600 transition">
               Contact
-            </a>
+            </Link>
           </div>
           <div className="flex items-center gap-4">
             {user ? (
