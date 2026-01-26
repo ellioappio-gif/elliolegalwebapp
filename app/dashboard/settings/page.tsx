@@ -21,8 +21,8 @@ function SettingsContent() {
     avatar: null
   })
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value, type, checked } = e.target as any
     setFormData({
       ...formData,
       [name]: type === 'checkbox' ? checked : value

@@ -30,7 +30,7 @@ function FavoritesContent() {
     }
   ])
 
-  const removeFavorite = (id) => {
+  const removeFavorite = (id: number) => {
     setFavorites(favorites.filter(fav => fav.id !== id))
   }
 

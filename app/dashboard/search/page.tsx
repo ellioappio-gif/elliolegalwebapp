@@ -7,7 +7,7 @@ import { useState } from 'react'
 function SearchContent() {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchType, setSearchType] = useState('all')
-  const [results, setResults] = useState([])
+  const [results, setResults] = useState<any[]>([])
   const [hasSearched, setHasSearched] = useState(false)
 
   // Sample data
@@ -23,7 +23,7 @@ function SearchContent() {
     { id: 3, name: 'James Chen', specialty: 'Corporate Law', location: 'California, CA', rating: 4.8 },
   ]
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     setHasSearched(true)
 

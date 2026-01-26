@@ -48,13 +48,13 @@ function NotificationsContent() {
     }
   ])
 
-  const markAsRead = (id) => {
+  const markAsRead = (id: number) => {
     setNotifications(notifications.map(notif =>
       notif.id === id ? { ...notif, read: true } : notif
     ))
   }
 
-  const deleteNotification = (id) => {
+  const deleteNotification = (id: number) => {
     setNotifications(notifications.filter(notif => notif.id !== id))
   }
 

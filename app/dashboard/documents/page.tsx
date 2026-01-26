@@ -10,13 +10,13 @@ function DocumentsContent() {
     { id: 2, name: 'Agreement', type: 'DOCX', size: '1.8 MB', uploaded: '1 week ago', status: 'Pending' },
   ])
 
-  const handleUpload = (e) => {
+  const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || [])
     files.forEach(file => {
       const newDoc = {
         id: Date.now(),
         name: file.name,
-        type: file.name.split('.').pop().toUpperCase(),
+        type: (file.name.split('.').pop() || 'file').toUpperCase(),
         size: (file.size / (1024 * 1024)).toFixed(1) + ' MB',
         uploaded: 'Just now',
         status: 'Analyzing...'

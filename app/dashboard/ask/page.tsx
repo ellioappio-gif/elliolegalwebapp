@@ -8,7 +8,7 @@ function AskContent() {
   const [question, setQuestion] = useState('')
   const [category, setCategory] = useState('general')
   const [loading, setLoading] = useState(false)
-  const [response, setResponse] = useState(null)
+  const [response, setResponse] = useState<{ question: string; answer: string; confidence: number } | null>(null)
 
   const categories = [
     { value: 'general', label: 'General Legal Question' },
@@ -17,7 +17,7 @@ function AskContent() {
     { value: 'business', label: 'Business Law' },
   ]
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!question.trim()) return
 

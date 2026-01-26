@@ -168,7 +168,7 @@ function TwoFactorContent() {
                     <input
                       type="text"
                       placeholder="000000"
-                      maxLength="6"
+                      maxLength={6}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg text-center text-2xl font-mono tracking-widest focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                     />
                   </div>

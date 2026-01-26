@@ -14,11 +14,11 @@ export default function SignupPage() {
   const { signup } = useAuth()
   const router = useRouter()
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
 
@@ -37,7 +37,7 @@ export default function SignupPage() {
       await signup(formData.email, formData.password, formData.name)
       router.push('/auth/verify-email')
     } catch (err) {
-      setError(err.message || 'Signup failed. Please try again.')
+      setError((err instanceof Error ? err.message : 'Signup failed. Please try again.') || 'Signup failed. Please try again.')
     } finally {
       setLoading(false)
     }

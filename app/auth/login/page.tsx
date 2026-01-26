@@ -15,7 +15,7 @@ export default function LoginPage() {
   const { login } = useAuth()
   const router = useRouter()
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
     setLoading(true)
@@ -24,7 +24,7 @@ export default function LoginPage() {
       await login(email, password)
       router.push('/dashboard')
     } catch (err) {
-      setError(err.message || 'Login failed. Please try again.')
+      setError((err instanceof Error ? err.message : 'Login failed. Please try again.') || 'Login failed. Please try again.')
     } finally {
       setLoading(false)
     }

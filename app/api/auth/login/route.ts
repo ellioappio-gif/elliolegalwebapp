@@ -1,11 +1,11 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 
 const demoUser = {
   email: 'demo@ellio.legal',
   password: 'demo123',
 };
 
-export async function POST(request) {
+export async function POST(request: NextRequest) {
   try {
     const { email, password } = await request.json();
 
