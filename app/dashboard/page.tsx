@@ -37,7 +37,9 @@ function DashboardContent() {
 
             <div className="flex items-center gap-4">
               <div className="text-right hidden sm:block">
-                <p className="font-semibold text-gray-900 text-sm">{user?.name}</p>
+                <Link href="/dashboard/profile" className="font-semibold text-gray-900 text-sm hover:text-blue-600 transition">
+                  {user?.name}
+                </Link>
                 <p className="text-gray-600 text-xs">{user?.email}</p>
               </div>
               <Link
