@@ -4,7 +4,7 @@ import { ProtectedRoute } from '../auth/ProtectedRoute'
 import { useAuth } from '../auth/AuthContext'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { LogOut, FileText, Brain, MessageSquare, Settings, User, Bell, Heart, DollarSign } from 'lucide-react'
+import { LogOut, FileText, Brain, MessageSquare, Settings, User, Bell, Heart, DollarSign, Search as SearchIcon } from 'lucide-react'
 
 function DashboardContent() {
   const { user, logout } = useAuth()
@@ -83,7 +83,7 @@ function DashboardContent() {
             { icon: Brain, title: 'Analyze Document', description: 'Upload and review documents', href: '/dashboard/documents' },
             { icon: MessageSquare, title: 'Chat with AI', description: 'Have a conversation', href: '/dashboard/chat' },
             { icon: User, title: 'Find Lawyer', description: 'Connect with a specialist', href: '/dashboard/lawyers' },
-            { icon: Heart, title: 'Favorites', description: 'Your saved lawyers', href: '/dashboard/favorites' },
+            { icon: SearchIcon, title: 'Search', description: 'Search all your items', href: '/dashboard/search' },
           ].map((action, i) => (
             <Link
               key={i}
