@@ -1,7 +1,7 @@
 'use client'
 
-import { ProtectedRoute } from '@/app/auth/ProtectedRoute'
-import { useAuth } from '@/app/auth/AuthContext'
+import { ProtectedRoute } from '../auth/ProtectedRoute'
+import { useAuth } from '../auth/AuthContext'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { LogOut, FileText, Brain, MessageSquare, Settings, User } from 'lucide-react'
@@ -40,6 +40,13 @@ function DashboardContent() {
                 <p className="font-semibold text-gray-900 text-sm">{user?.name}</p>
                 <p className="text-gray-600 text-xs">{user?.email}</p>
               </div>
+              <Link
+                href="/dashboard/settings"
+                className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                <Settings className="w-5 h-5" />
+                <span className="hidden sm:inline">Settings</span>
+              </Link>
               <button
                 onClick={handleLogout}
                 className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"

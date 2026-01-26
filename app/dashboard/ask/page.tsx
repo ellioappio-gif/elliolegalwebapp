@@ -1,6 +1,6 @@
 'use client'
 
-import { ProtectedRoute } from '@/app/auth/ProtectedRoute'
+import { ProtectedRoute } from '../../auth/ProtectedRoute'
 import { useState } from 'react'
 import { Send, FileText, Loader } from 'lucide-react'
 

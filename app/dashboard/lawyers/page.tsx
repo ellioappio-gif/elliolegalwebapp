@@ -1,6 +1,6 @@
 'use client'
 
-import { ProtectedRoute } from '@/app/auth/ProtectedRoute'
+import { ProtectedRoute } from '../../auth/ProtectedRoute'
 import { Star, MapPin, DollarSign, Video, MessageSquare } from 'lucide-react'
 
 function LawyersContent() {

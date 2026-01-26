@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { useAuth } from './AuthContext'
+import { useAuth } from '../AuthContext'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Mail, Lock, ArrowRight, Eye, EyeOff } from 'lucide-react'
