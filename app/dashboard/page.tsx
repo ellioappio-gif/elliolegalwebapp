@@ -5,6 +5,7 @@ import { useAuth } from '../auth/AuthContext'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { LogOut, FileText, Brain, MessageSquare, Settings, User, Bell, Heart, DollarSign, Search as SearchIcon } from 'lucide-react'
+import { colors } from '@/src/theme/ellio-v2.0/tokens.colors'
 
 function DashboardContent() {
   const { user, logout } = useAuth()
@@ -25,8 +26,8 @@ function DashboardContent() {
               <svg className="w-8 h-8" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                   <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style={{stopColor: '#5B7EFF', stopOpacity: 1}} />
-                    <stop offset="100%" style={{stopColor: '#1E3A8A', stopOpacity: 1}} />
+                    <stop offset="0%" style={{stopColor: colors.brand.indigo[500], stopOpacity: 1}} />
+                    <stop offset="100%" style={{stopColor: colors.brand.indigo[700], stopOpacity: 1}} />
                   </linearGradient>
                 </defs>
                 <ellipse cx="100" cy="110" rx="45" ry="50" fill="url(#headerGrad)"/>
