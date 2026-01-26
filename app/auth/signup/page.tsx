@@ -35,7 +35,7 @@ export default function SignupPage() {
     setLoading(true)
     try {
       await signup(formData.email, formData.password, formData.name)
-      router.push('/dashboard')
+      router.push('/auth/verify-email')
     } catch (err) {
       setError(err.message || 'Signup failed. Please try again.')
     } finally {
