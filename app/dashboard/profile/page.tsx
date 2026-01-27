@@ -4,13 +4,23 @@ import { ProtectedRoute } from '../../auth/ProtectedRoute'
 import { useAuth } from '../../auth/AuthContext'
 import Link from 'next/link'
 import { User, Mail, FileText, Star } from 'lucide-react'
+import DashboardLayout from '@/components/dashboard/DashboardLayout'
 
 function ProfileContent() {
   const { user } = useAuth()
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
-      <div className="max-w-2xl mx-auto">
+    <DashboardLayout>
+      <div className="p-6 lg:p-8 max-w-2xl mx-auto">
+        <div className="mb-6">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-10 h-10 rounded-xl bg-[#4f46e5]/10 flex items-center justify-center">
+              <User className="w-5 h-5 text-[#4f46e5]" />
+            </div>
+            <h1 className="text-2xl font-semibold text-[#0f172a]">My profile</h1>
+          </div>
+          <p className="text-[#64748b]">Manage your account information and preferences</p>
+        </div>
         <div className="bg-white rounded-xl border border-gray-200 p-8 mb-6">
           {/* Profile Header */}
           <div className="flex items-start gap-6 mb-8 pb-8 border-b border-gray-200">
@@ -58,7 +68,7 @@ function ProfileContent() {
           </div>
         </div>
       </div>
-    </div>
+    </DashboardLayout>
   )
 }
 

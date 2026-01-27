@@ -1,7 +1,8 @@
 'use client'
 
 import { ProtectedRoute } from '../../auth/ProtectedRoute'
-import { Star, MapPin, DollarSign, Video, MessageSquare } from 'lucide-react'
+import { Star, MapPin, DollarSign, Video, MessageSquare, Users } from 'lucide-react'
+import DashboardLayout from '@/components/dashboard/DashboardLayout'
 
 function LawyersContent() {
   const lawyers = [
@@ -52,9 +53,17 @@ function LawyersContent() {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Find a Lawyer</h1>
+    <DashboardLayout>
+      <div className="p-6 lg:p-8 max-w-6xl mx-auto">
+        <div className="mb-6">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-10 h-10 rounded-xl bg-[#f59e0b]/10 flex items-center justify-center">
+              <Users className="w-5 h-5 text-[#f59e0b]" />
+            </div>
+            <h1 className="text-2xl font-semibold text-[#0f172a]">Find a lawyer</h1>
+          </div>
+          <p className="text-[#64748b]">Connect with qualified legal professionals</p>
+        </div>
 
         {/* Filters */}
         <div className="bg-white rounded-xl border border-gray-200 p-6 mb-8">
@@ -141,7 +150,7 @@ function LawyersContent() {
           ))}
         </div>
       </div>
-    </div>
+    </DashboardLayout>
   )
 }
 

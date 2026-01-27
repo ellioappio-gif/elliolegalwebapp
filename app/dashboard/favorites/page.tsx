@@ -3,6 +3,7 @@
 import { ProtectedRoute } from '../../auth/ProtectedRoute'
 import { Heart, Star, MapPin, DollarSign, Video, MessageSquare } from 'lucide-react'
 import { useState } from 'react'
+import DashboardLayout from '@/components/dashboard/DashboardLayout'
 
 function FavoritesContent() {
   const [favorites, setFavorites] = useState([
@@ -35,14 +36,16 @@ function FavoritesContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-2">
-            <Heart className="w-8 h-8 text-red-500 fill-red-500" />
-            Favorite Lawyers
-          </h1>
-          <p className="text-gray-600">Your saved list of favorite legal professionals</p>
+    <DashboardLayout>
+      <div className="p-6 lg:p-8 max-w-6xl mx-auto">
+        <div className="mb-6">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-10 h-10 rounded-xl bg-[#ef4444]/10 flex items-center justify-center">
+              <Heart className="w-5 h-5 text-[#ef4444]" />
+            </div>
+            <h1 className="text-2xl font-semibold text-[#0f172a]">Favorites</h1>
+          </div>
+          <p className="text-[#64748b]">Your saved lawyers and legal resources</p>
         </div>
 
         {favorites.length === 0 ? (
@@ -105,7 +108,7 @@ function FavoritesContent() {
           </div>
         )}
       </div>
-    </div>
+    </DashboardLayout>
   )
 }
 

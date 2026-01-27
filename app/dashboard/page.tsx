@@ -1,160 +1,303 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { ProtectedRoute } from '../auth/ProtectedRoute'
 import { useAuth } from '../auth/AuthContext'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { LogOut, FileText, Brain, MessageSquare, Settings, User, Bell, Heart, DollarSign, Search as SearchIcon } from 'lucide-react'
-import { colors } from '@/src/theme/ellio-v2.0/tokens.colors'
+import DashboardLayout from '@/components/dashboard/DashboardLayout'
+import SetupWizard from '@/components/dashboard/SetupWizard'
+import TutorialOverlay from '@/components/dashboard/TutorialOverlay'
+import {
+  Sparkles,
+  FileText,
+  MessageSquare,
+  Users,
+  Search,
+  Clock,
+  ArrowRight,
+  Star,
+  Zap,
+  Shield,
+  BarChart3,
+  Plus,
+  ChevronRight
+} from 'lucide-react'
 
 function DashboardContent() {
-  const { user, logout } = useAuth()
+  const { user } = useAuth()
   const router = useRouter()
+  const [showSetupWizard, setShowSetupWizard] = useState(false)
+  const [showTutorial, setShowTutorial] = useState(false)
+  const [greeting, setGreeting] = useState('Welcome back')
 
-  const handleLogout = () => {
-    logout()
-    router.push('/')
-  }
+  // Check if first-time user
+  useEffect(() => {
+    const setupComplete = localStorage.getItem('ellio_setup_complete')
+    if (!setupComplete) {
+      setShowSetupWizard(true)
+    }
+  }, [])
+
+  // Set greeting based on time of day
+  useEffect(() => {
+    const hour = new Date().getHours()
+    if (hour < 12) {
+      setGreeting('Good morning')
+    } else if (hour < 18) {
+      setGreeting('Good afternoon')
+    } else {
+      setGreeting('Good evening')
+    }
+  }, [])
+
+  const quickActions = [
+    {
+      title: 'Ask a question',
+      description: 'Get instant answers to legal questions',
+      icon: Sparkles,
+      href: '/dashboard/ask',
+      iconColor: '#4f46e5',
+      bgColor: 'bg-[#4f46e5]/5',
+    },
+    {
+      title: 'Start a chat',
+      description: 'Have a conversation with AI',
+      icon: MessageSquare,
+      href: '/dashboard/chat',
+      iconColor: '#0ea5e9',
+      bgColor: 'bg-[#0ea5e9]/5',
+    },
+    {
+      title: 'Upload document',
+      description: 'Analyze contracts and agreements',
+      icon: FileText,
+      href: '/dashboard/documents',
+      iconColor: '#10b981',
+      bgColor: 'bg-[#10b981]/5',
+    },
+    {
+      title: 'Find a lawyer',
+      description: 'Connect with legal professionals',
+      icon: Users,
+      href: '/dashboard/lawyers',
+      iconColor: '#f59e0b',
+      bgColor: 'bg-[#f59e0b]/5',
+    },
+  ]
+
+  const stats = [
+    { label: 'Questions asked', value: '0', change: '+0%', icon: MessageSquare },
+    { label: 'Documents analyzed', value: '0', change: '+0%', icon: FileText },
+    { label: 'Chats this month', value: '0', change: '+0%', icon: BarChart3 },
+  ]
+
+  const recentActivity: any[] = []
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="sticky top-0 z-40 bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
-              <svg className="w-8 h-8" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="headerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style={{stopColor: colors.brand.indigo[500], stopOpacity: 1}} />
-                    <stop offset="100%" style={{stopColor: colors.brand.indigo[700], stopOpacity: 1}} />
-                  </linearGradient>
-                </defs>
-                <ellipse cx="100" cy="110" rx="45" ry="50" fill="url(#headerGrad)"/>
-                <circle cx="100" cy="60" r="35" fill="url(#headerGrad)"/>
-              </svg>
-              <span className="text-xl font-bold text-gray-900">ellio legal</span>
-            </Link>
+    <DashboardLayout onShowTutorial={() => setShowTutorial(true)}>
+      {/* Setup Wizard */}
+      {showSetupWizard && (
+        <SetupWizard
+          onComplete={() => setShowSetupWizard(false)}
+          onSkip={() => setShowSetupWizard(false)}
+        />
+      )}
 
-            <div className="flex items-center gap-4">
-              <div className="text-right hidden sm:block">
-                <Link href="/dashboard/profile" className="font-semibold text-gray-900 text-sm hover:text-blue-600 transition">
-                  {user?.name}
-                </Link>
-                <p className="text-gray-600 text-xs">{user?.email}</p>
-              </div>
-              <Link
-                href="/dashboard/notifications"
-                className="relative flex items-center justify-center p-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                <Bell className="w-5 h-5" />
-                <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-red-500"></span>
-              </Link>
-              <Link
-                href="/dashboard/settings"
-                className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
-              >
-                <Settings className="w-5 h-5" />
-                <span className="hidden sm:inline">Settings</span>
-              </Link>
+      {/* Tutorial Overlay */}
+      <TutorialOverlay 
+        isOpen={showTutorial} 
+        onClose={() => setShowTutorial(false)} 
+      />
+
+      <div className="p-6 lg:p-8 max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h1 className="text-2xl lg:text-3xl font-semibold text-[#0f172a]">
+                {greeting}, {user?.name?.split(' ')[0]}
+              </h1>
+              <p className="text-[#64748b] mt-1">Here's what's happening with your legal matters</p>
+            </div>
+            <div className="flex items-center gap-3">
               <button
-                onClick={handleLogout}
-                className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                onClick={() => setShowTutorial(true)}
+                className="px-4 py-2.5 text-[#64748b] hover:text-[#334155] hover:bg-[#f1f5f9] rounded-lg font-medium text-sm transition-colors"
               >
-                <LogOut className="w-5 h-5" />
-                <span className="hidden sm:inline">Sign out</span>
+                View tutorial
               </button>
+              <Link
+                href="/dashboard/ask"
+                className="flex items-center gap-2 px-4 py-2.5 bg-[#4f46e5] hover:bg-[#4338ca] text-white rounded-lg font-medium text-sm transition-colors"
+              >
+                <Plus className="w-4 h-4" />
+                New question
+              </Link>
             </div>
           </div>
         </div>
-      </header>
 
-      {/* Main content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Welcome section */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Welcome, {user?.name?.split(' ')[0]}!</h1>
-          <p className="text-lg text-gray-600">Your AI-powered legal assistant is ready to help</p>
-        </div>
-
-        {/* Quick actions grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
-          {[
-            { icon: FileText, title: 'New Question', description: 'Ask about contracts or legal matters', href: '/dashboard/ask' },
-            { icon: Brain, title: 'Analyze Document', description: 'Upload and review documents', href: '/dashboard/documents' },
-            { icon: MessageSquare, title: 'Chat with AI', description: 'Have a conversation', href: '/dashboard/chat' },
-            { icon: User, title: 'Find Lawyer', description: 'Connect with a specialist', href: '/dashboard/lawyers' },
-            { icon: SearchIcon, title: 'Search', description: 'Search all your items', href: '/dashboard/search' },
-          ].map((action, i) => (
+        {/* Quick Actions */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+          {quickActions.map((action) => (
             <Link
-              key={i}
+              key={action.title}
               href={action.href}
-              className="bg-white rounded-xl border border-gray-200 p-6 hover:border-blue-300 hover:shadow-lg transition-all group"
+              className="group relative bg-white rounded-xl border border-[#e2e8f0] p-5 hover:border-[#4f46e5]/30 hover:shadow-lg transition-all duration-200"
             >
-              <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
-                <action.icon className="w-6 h-6 text-blue-600" />
+              <div className={`w-11 h-11 rounded-xl ${action.bgColor} flex items-center justify-center mb-4`}>
+                <action.icon className="w-5 h-5" style={{ color: action.iconColor }} />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-1">{action.title}</h3>
-              <p className="text-sm text-gray-600">{action.description}</p>
+              <h3 className="font-semibold text-[#0f172a] mb-1 group-hover:text-[#4f46e5] transition-colors">
+                {action.title}
+              </h3>
+              <p className="text-sm text-[#64748b]">{action.description}</p>
+              <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#e2e8f0] group-hover:text-[#4f46e5] group-hover:translate-x-1 transition-all" />
             </Link>
           ))}
         </div>
 
-        {/* Features grid */}
-        <div className="bg-white rounded-xl border border-gray-200 p-8 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Available Features</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Stats Row */}
+        <div className="grid sm:grid-cols-3 gap-4 mb-8">
+          {stats.map((stat) => (
+            <div
+              key={stat.label}
+              className="bg-white rounded-xl border border-[#e2e8f0] p-5"
+            >
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-10 h-10 rounded-lg bg-[#f1f5f9] flex items-center justify-center">
+                  <stat.icon className="w-5 h-5 text-[#64748b]" />
+                </div>
+                <span className="text-xs font-medium text-[#10b981] bg-[#ecfdf5] px-2 py-1 rounded-full">
+                  {stat.change}
+                </span>
+              </div>
+              <p className="text-2xl font-semibold text-[#0f172a] mb-1">{stat.value}</p>
+              <p className="text-sm text-[#64748b]">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Main Content Grid */}
+        <div className="grid lg:grid-cols-3 gap-6">
+          {/* Recent Activity */}
+          <div className="lg:col-span-2 bg-white rounded-xl border border-[#e2e8f0] p-6">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-lg font-semibold text-[#0f172a]">Recent activity</h2>
+              <Link href="/dashboard/search" className="text-sm font-medium text-[#4f46e5] hover:text-[#4338ca] transition-colors">
+                View all
+              </Link>
+            </div>
+
+            {recentActivity.length === 0 ? (
+              <div className="text-center py-12">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#f1f5f9] flex items-center justify-center">
+                  <Clock className="w-8 h-8 text-[#94a3b8]" />
+                </div>
+                <h3 className="font-medium text-[#334155] mb-2">No activity yet</h3>
+                <p className="text-sm text-[#64748b] mb-4 max-w-sm mx-auto">
+                  Start by asking a question or uploading a document. Your activity will appear here.
+                </p>
+                <Link
+                  href="/dashboard/ask"
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-[#4f46e5] hover:bg-[#4338ca] text-white rounded-lg font-medium text-sm transition-colors"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  Ask your first question
+                </Link>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {/* Activity items would go here */}
+              </div>
+            )}
+          </div>
+
+          {/* Right Sidebar */}
+          <div className="space-y-6">
+            {/* Upgrade Card */}
+            <div className="bg-gradient-to-br from-[#4f46e5] to-[#6366f1] rounded-xl p-6 text-white">
+              <div className="flex items-center gap-2 mb-3">
+                <Zap className="w-5 h-5" />
+                <span className="text-sm font-medium opacity-90">Upgrade to Pro</span>
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Unlock unlimited features</h3>
+              <p className="text-sm opacity-80 mb-4">
+                Get unlimited questions, priority support, and advanced document analysis.
+              </p>
+              <Link
+                href="/pricing"
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-white text-[#4f46e5] rounded-lg font-medium text-sm hover:bg-[#f8fafc] transition-colors"
+              >
+                View plans
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+
+            {/* Quick Tips */}
+            <div className="bg-white rounded-xl border border-[#e2e8f0] p-6">
+              <h3 className="font-semibold text-[#0f172a] mb-4">Quick tips</h3>
+              <div className="space-y-4">
+                {[
+                  { icon: Star, tip: 'Save important answers to favorites for quick access' },
+                  { icon: Shield, tip: 'Your data is encrypted and never shared with third parties' },
+                  { icon: Sparkles, tip: 'Be specific in your questions for better answers' },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-[#f1f5f9] flex items-center justify-center flex-shrink-0">
+                      <item.icon className="w-4 h-4 text-[#64748b]" />
+                    </div>
+                    <p className="text-sm text-[#64748b] leading-relaxed">{item.tip}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Search Card */}
+            <div className="bg-white rounded-xl border border-[#e2e8f0] p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <Search className="w-5 h-5 text-[#64748b]" />
+                <h3 className="font-semibold text-[#0f172a]">Quick search</h3>
+              </div>
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search conversations, documents..."
+                  className="w-full px-4 py-2.5 bg-[#f8fafc] border border-[#e2e8f0] rounded-lg text-sm placeholder-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#4f46e5] focus:border-[#4f46e5] transition-colors"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      router.push(`/dashboard/search?q=${encodeURIComponent((e.target as HTMLInputElement).value)}`)
+                    }
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Features Section */}
+        <div className="mt-8 bg-white rounded-xl border border-[#e2e8f0] p-6">
+          <h2 className="text-lg font-semibold text-[#0f172a] mb-6">Everything you need</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { title: 'AI Legal Analysis', description: 'Get instant analysis of legal documents' },
-              { title: 'Contract Review', description: 'Understand contracts in plain language' },
-              { title: 'Document Upload', description: 'Secure cloud storage for your documents' },
-              { title: 'Lawyer Network', description: 'Connect with qualified legal professionals' },
-              { title: 'Chat Support', description: '24/7 AI-powered legal assistant' },
-              { title: 'Secure Storage', description: 'Bank-level encryption for privacy' },
+              { icon: Sparkles, title: 'AI-powered answers', description: 'Get instant explanations in plain language' },
+              { icon: FileText, title: 'Document analysis', description: 'Upload and understand any legal document' },
+              { icon: Users, title: 'Lawyer network', description: 'Connect with qualified professionals' },
+              { icon: Shield, title: 'Bank-level security', description: 'Your data is encrypted and protected' },
             ].map((feature, i) => (
-              <div key={i} className="p-4 rounded-lg bg-gray-50 border border-gray-200">
-                <h4 className="font-semibold text-gray-900 mb-2">{feature.title}</h4>
-                <p className="text-sm text-gray-600">{feature.description}</p>
+              <div key={i} className="p-4 bg-[#f8fafc] rounded-xl">
+                <div className="w-10 h-10 rounded-lg bg-white border border-[#e2e8f0] flex items-center justify-center mb-3">
+                  <feature.icon className="w-5 h-5 text-[#4f46e5]" />
+                </div>
+                <h3 className="font-medium text-[#0f172a] mb-1">{feature.title}</h3>
+                <p className="text-sm text-[#64748b]">{feature.description}</p>
               </div>
             ))}
           </div>
         </div>
-
-        {/* Pricing CTA */}
-        <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200 p-8 mb-8">
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">Upgrade to Pro</h3>
-              <p className="text-gray-600">Get unlimited questions, priority support, and more</p>
-            </div>
-            <Link href="/pricing" className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors whitespace-nowrap">
-              View Plans
-            </Link>
-          </div>
-        </div>
-
-        {/* Recent activity / Quick stats */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {[
-            { label: 'Documents Analyzed', value: '0', icon: FileText },
-            { label: 'Questions Asked', value: '0', icon: MessageSquare },
-            { label: 'Connected Lawyers', value: '0', icon: User },
-          ].map((stat, i) => (
-            <div key={i} className="bg-white rounded-xl border border-gray-200 p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-600 text-sm mb-1">{stat.label}</p>
-                  <p className="text-3xl font-bold text-gray-900">{stat.value}</p>
-                </div>
-                <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center">
-                  <stat.icon className="w-6 h-6 text-blue-600" />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
-    </div>
+    </DashboardLayout>
   )
 }
 

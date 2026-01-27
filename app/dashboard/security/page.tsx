@@ -3,6 +3,7 @@
 import { ProtectedRoute } from '../../auth/ProtectedRoute'
 import { Shield, Smartphone, Copy, Check } from 'lucide-react'
 import { useState } from 'react'
+import DashboardLayout from '@/components/dashboard/DashboardLayout'
 
 function TwoFactorContent() {
   const [isEnabled, setIsEnabled] = useState(false)
@@ -17,14 +18,16 @@ function TwoFactorContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
-      <div className="max-w-2xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2 flex items-center gap-2">
-            <Shield className="w-8 h-8 text-blue-600" />
-            Two-Factor Authentication
-          </h1>
-          <p className="text-gray-600">Add an extra layer of security to your account</p>
+    <DashboardLayout>
+      <div className="p-6 lg:p-8 max-w-2xl mx-auto">
+        <div className="mb-6">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-10 h-10 rounded-xl bg-[#10b981]/10 flex items-center justify-center">
+              <Shield className="w-5 h-5 text-[#10b981]" />
+            </div>
+            <h1 className="text-2xl font-semibold text-[#0f172a]">Security</h1>
+          </div>
+          <p className="text-[#64748b]">Manage two-factor authentication and account security</p>
         </div>
 
         {step === 'menu' && (
@@ -197,7 +200,7 @@ function TwoFactorContent() {
           </div>
         )}
       </div>
-    </div>
+    </DashboardLayout>
   )
 }
 

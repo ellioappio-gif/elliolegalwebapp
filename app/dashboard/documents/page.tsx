@@ -3,6 +3,7 @@
 import { ProtectedRoute } from '../../auth/ProtectedRoute'
 import { useState } from 'react'
 import { Upload, FileText, Trash2, Download, Share2 } from 'lucide-react'
+import DashboardLayout from '@/components/dashboard/DashboardLayout'
 
 function DocumentsContent() {
   const [documents, setDocuments] = useState([
@@ -26,9 +27,17 @@ function DocumentsContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Document Management</h1>
+    <DashboardLayout>
+      <div className="p-6 lg:p-8 max-w-6xl mx-auto">
+        <div className="mb-6">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-10 h-10 rounded-xl bg-[#10b981]/10 flex items-center justify-center">
+              <FileText className="w-5 h-5 text-[#10b981]" />
+            </div>
+            <h1 className="text-2xl font-semibold text-[#0f172a]">Documents</h1>
+          </div>
+          <p className="text-[#64748b]">Upload and manage your legal documents</p>
+        </div>
 
         {/* Upload area */}
         <div className="bg-white rounded-xl border-2 border-dashed border-blue-300 p-12 text-center mb-8 hover:border-blue-400 transition-colors cursor-pointer">
@@ -99,7 +108,7 @@ function DocumentsContent() {
           )}
         </div>
       </div>
-    </div>
+    </DashboardLayout>
   )
 }
 

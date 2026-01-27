@@ -4,8 +4,9 @@ import { ProtectedRoute } from '../../auth/ProtectedRoute'
 import { useAuth } from '../../auth/AuthContext'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { User, Mail, Phone, MapPin, Lock, Bell, Save, LogOut } from 'lucide-react'
-import { useState } from 'react' 
+import { User, Mail, Phone, MapPin, Lock, Bell, Save, LogOut, Settings } from 'lucide-react'
+import { useState } from 'react'
+import DashboardLayout from '@/components/dashboard/DashboardLayout' 
 
 function SettingsContent() {
   const { user, logout } = useAuth()
@@ -40,9 +41,17 @@ function SettingsContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
-      <div className="max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Settings</h1>
+    <DashboardLayout>
+      <div className="p-6 lg:p-8 max-w-2xl mx-auto">
+        <div className="mb-6">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-10 h-10 rounded-xl bg-[#64748b]/10 flex items-center justify-center">
+              <Settings className="w-5 h-5 text-[#64748b]" />
+            </div>
+            <h1 className="text-2xl font-semibold text-[#0f172a]">Settings</h1>
+          </div>
+          <p className="text-[#64748b]">Manage your account preferences</p>
+        </div>
 
         {savedMessage && (
           <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg mb-6">
@@ -206,7 +215,7 @@ function SettingsContent() {
           </button>
         </div>
       </div>
-    </div>
+    </DashboardLayout>
   )
 }
 
