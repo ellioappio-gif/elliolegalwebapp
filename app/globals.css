@@ -1,17 +1,20 @@
-@import "tailwindcss";
+@import "tailwindcss/preflight" layer(base);
+@import "tailwindcss/utilities" layer(utilities);
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background-color: #ffffff;
-}
-
-a {
-  text-decoration: none;
-}
-
-button {
-  cursor: pointer;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: #ffffff;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  button {
+    cursor: pointer;
+  }
 }
