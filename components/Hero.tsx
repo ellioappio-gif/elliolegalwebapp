@@ -1,3 +1,7 @@
+'use client'
+
+import Link from 'next/link'
+
 export default function Hero() {
   return (
     <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
@@ -7,9 +11,12 @@ export default function Hero() {
           <p className="text-xl mb-8 text-blue-100">
             Transform your business with cutting-edge web solutions and digital innovation
           </p>
-          <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition">
+          <Link 
+            href="/#services" 
+            className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition"
+          >
             Explore Our Services
-          </button>
+          </Link>
         </div>
       </div>
     </section>

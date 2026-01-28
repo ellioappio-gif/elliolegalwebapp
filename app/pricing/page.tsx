@@ -14,50 +14,66 @@ export default function PricingPage() {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {[
             {
               name: 'Free',
               price: '$0',
               period: 'Forever',
-              description: 'Perfect for getting started',
+              description: 'Ad-supported access',
               features: [
                 'AI legal assistant',
-                '5 questions per month',
+                '2,048 token responses',
+                '10 requests per minute',
                 'Basic document analysis',
-                'Email support'
+                'Ad-supported experience'
               ],
               cta: 'Start Free',
               highlighted: false
             },
             {
-              name: 'Pro',
-              price: '$14.99',
+              name: 'Basic',
+              price: '$9.99',
+              period: '/month',
+              description: 'For occasional users',
+              features: [
+                'Everything in Free +',
+                '4,096 token responses',
+                '20 requests per minute',
+                'No ads',
+                'Email support'
+              ],
+              cta: 'Get Basic',
+              highlighted: false
+            },
+            {
+              name: 'Premium',
+              price: '$19.99',
               period: '/month',
               description: 'Best for regular users',
               features: [
-                'Everything in Free +',
-                'Unlimited questions',
+                'Everything in Basic +',
+                '6,144 token responses',
+                '50 requests per minute',
                 'Advanced document analysis',
-                'Chat with AI 24/7',
                 'Priority support'
               ],
-              cta: 'Start Pro Trial',
+              cta: 'Start Premium',
               highlighted: true
             },
             {
-              name: 'Lawyer Consultation',
-              price: '$99',
-              period: '/hour',
-              description: 'Talk to real lawyers',
+              name: 'Enterprise',
+              price: 'Custom',
+              period: 'pricing',
+              description: 'For organizations',
               features: [
-                'Connect with verified lawyers',
-                'Video/phone consultations',
-                'Custom legal advice',
-                'Document review',
-                'Secure messaging'
+                'Everything in Premium +',
+                '8,192 token responses',
+                '100 requests per minute',
+                'Dedicated support',
+                'Custom integrations'
               ],
-              cta: 'Find a Lawyer',
+              cta: 'Contact Sales',
               highlighted: false
             }
           ].map((plan, i) => (

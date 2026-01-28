@@ -81,7 +81,7 @@ export default function VerifyEmailPage() {
 
             <Link
               href="/dashboard"
-              className="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors flex items-center gap-2"
+              className="inline-flex px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors items-center gap-2"
             >
               Go to Dashboard
               <ArrowRight className="w-5 h-5" />

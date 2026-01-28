@@ -6,6 +6,7 @@ import { useState } from 'react'
 import DashboardLayout from '@/components/dashboard/DashboardLayout'
 
 function FavoritesContent() {
+  const [showModal, setShowModal] = useState<'schedule' | 'message' | null>(null)
   const [favorites, setFavorites] = useState([
     {
       id: 1,
@@ -94,17 +95,53 @@ function FavoritesContent() {
                 </div>
 
                 <div className="flex gap-3">
-                  <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors">
+                  <button 
+                    onClick={() => setShowModal('schedule')}
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors"
+                  >
                     <Video className="w-4 h-4" />
                     Schedule Call
                   </button>
-                  <button className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-lg font-semibold transition-colors">
+                  <button 
+                    onClick={() => setShowModal('message')}
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-lg font-semibold transition-colors"
+                  >
                     <MessageSquare className="w-4 h-4" />
                     Message
                   </button>
                 </div>
               </div>
             ))}
+          </div>
+        )}
+
+        {/* Modal for scheduling/messaging */}
+        {showModal && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-xl p-6 max-w-md w-full">
+              <h3 className="text-xl font-bold text-gray-900 mb-4">
+                {showModal === 'schedule' ? 'Schedule a Call' : 'Send a Message'}
+              </h3>
+              <p className="text-gray-600 mb-6">
+                {showModal === 'schedule' 
+                  ? 'Video consultations with lawyers are coming soon. We\'re working hard to bring you this feature.'
+                  : 'Direct messaging with lawyers is coming soon. In the meantime, you can use our AI assistant for legal questions.'}
+              </p>
+              <div className="flex gap-3">
+                <button 
+                  onClick={() => setShowModal(null)}
+                  className="flex-1 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-lg font-semibold transition-colors"
+                >
+                  Close
+                </button>
+                <button 
+                  onClick={() => setShowModal(null)}
+                  className="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors"
+                >
+                  Notify Me
+                </button>
+              </div>
+            </div>
           </div>
         )}
       </div>

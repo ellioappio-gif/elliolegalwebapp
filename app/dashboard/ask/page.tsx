@@ -3,9 +3,11 @@
 import { ProtectedRoute } from '../../auth/ProtectedRoute'
 import { useState, useCallback } from 'react'
 import { Send, FileText, Loader, Sparkles } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import DashboardLayout from '@/components/dashboard/DashboardLayout'
 
 function AskContent() {
+  const router = useRouter()
   const [question, setQuestion] = useState('')
   const [category, setCategory] = useState('general')
   const [loading, setLoading] = useState(false)
@@ -146,7 +148,10 @@ function AskContent() {
                   Confidence: <span className="font-medium text-[#334155]">{Math.round(response.confidence * 100)}%</span>
                 </p>
               </div>
-              <button className="text-[#4f46e5] hover:text-[#4338ca] font-medium transition-colors">
+              <button 
+                onClick={() => router.push('/dashboard/lawyers')}
+                className="text-[#4f46e5] hover:text-[#4338ca] font-medium transition-colors"
+              >
                 Connect with a lawyer
               </button>
             </div>

@@ -26,6 +26,22 @@ function DocumentsContent() {
     })
   }
 
+  const handleDownload = (doc: typeof documents[0]) => {
+    // In a real app, this would download the file
+    alert(`Downloading ${doc.name}`)
+  }
+
+  const handleShare = (doc: typeof documents[0]) => {
+    // In a real app, this would open a share dialog
+    alert(`Share link copied for ${doc.name}`)
+  }
+
+  const handleDelete = (docId: number) => {
+    if (confirm('Are you sure you want to delete this document?')) {
+      setDocuments(documents.filter(d => d.id !== docId))
+    }
+  }
+
   return (
     <DashboardLayout>
       <div className="p-6 lg:p-8 max-w-6xl mx-auto">
@@ -91,13 +107,25 @@ function DocumentsContent() {
                     </div>
 
                     <div className="flex gap-2">
-                      <button className="p-2 hover:bg-gray-200 rounded-lg transition-colors" title="Download">
+                      <button 
+                        onClick={() => handleDownload(doc)}
+                        className="p-2 hover:bg-gray-200 rounded-lg transition-colors" 
+                        title="Download"
+                      >
                         <Download className="w-5 h-5 text-gray-600" />
                       </button>
-                      <button className="p-2 hover:bg-gray-200 rounded-lg transition-colors" title="Share">
+                      <button 
+                        onClick={() => handleShare(doc)}
+                        className="p-2 hover:bg-gray-200 rounded-lg transition-colors" 
+                        title="Share"
+                      >
                         <Share2 className="w-5 h-5 text-gray-600" />
                       </button>
-                      <button className="p-2 hover:bg-red-100 rounded-lg transition-colors" title="Delete">
+                      <button 
+                        onClick={() => handleDelete(doc.id)}
+                        className="p-2 hover:bg-red-100 rounded-lg transition-colors" 
+                        title="Delete"
+                      >
                         <Trash2 className="w-5 h-5 text-red-600" />
                       </button>
                     </div>
