@@ -1,6 +1,8 @@
 // Authentication Middleware - Ensure AI endpoints require authenticated users
+// Claude Sonnet 4.5 is ENABLED FOR ALL TIERS - token limits vary by plan
 
 import { NextRequest } from 'next/server'
+import { AI_CONFIG } from './config'
 
 export interface AuthUser {
   id: string
@@ -86,30 +88,38 @@ function getBaseUrl(request: NextRequest): string {
 
 /**
  * Get rate limits based on user plan
+ * NOTE: Claude Sonnet 4.5 is available to ALL tiers - only limits differ
  */
 export function getPlanLimits(plan?: string): {
   requestsPerMinute: number
   maxTokensPerRequest: number
   maxConversationLength: number
+  model: string
 } {
+  // All tiers use Claude Sonnet 4.5
+  const model = AI_CONFIG.model
+  
   switch (plan) {
     case 'enterprise':
       return {
         requestsPerMinute: 100,
         maxTokensPerRequest: 8192,
         maxConversationLength: 50,
+        model,
       }
     case 'premium':
       return {
         requestsPerMinute: 50,
         maxTokensPerRequest: 6144,
         maxConversationLength: 30,
+        model,
       }
     case 'basic':
       return {
         requestsPerMinute: 20,
         maxTokensPerRequest: 4096,
         maxConversationLength: 20,
+        model,
       }
     case 'free':
     default:
@@ -117,6 +127,7 @@ export function getPlanLimits(plan?: string): {
         requestsPerMinute: 10,
         maxTokensPerRequest: 2048,
         maxConversationLength: 10,
+        model,
       }
   }
 }

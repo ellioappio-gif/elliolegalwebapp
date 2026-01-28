@@ -1,4 +1,15 @@
 // AI Service Types
+// Claude Sonnet 4.5 enabled for ALL tiers
+
+export type SubscriptionTier = 'free' | 'basic' | 'premium' | 'enterprise'
+
+export interface TierConfig {
+  maxTokens: number
+  requestsPerMinute: number
+  requestsPerDay: number
+  features: string[]
+  adSupported: boolean
+}
 
 export interface ChatMessage {
   role: 'user' | 'assistant'
@@ -10,6 +21,7 @@ export interface AIRequest {
   context?: 'legalAssistant' | 'contractAnalysis' | 'generalLegal'
   maxTokens?: number
   temperature?: number
+  tier?: SubscriptionTier
 }
 
 export interface AIResponse {
@@ -19,6 +31,7 @@ export interface AIResponse {
     outputTokens: number
   }
   model: string
+  tier?: SubscriptionTier
 }
 
 export interface AIError {
@@ -30,6 +43,7 @@ export interface AIError {
 export interface AskRequest {
   question: string
   category: string
+  tier?: SubscriptionTier
 }
 
 export interface AskResponse {
@@ -37,4 +51,5 @@ export interface AskResponse {
   answer: string
   confidence: number
   model: string
+  tier?: SubscriptionTier
 }

@@ -1,10 +1,42 @@
 // AI Configuration for Ellio Solutions
-// Using Claude Sonnet 4.5 for all clients
+// Claude Sonnet 4.5 ENABLED FOR ALL CLIENTS (all tiers)
 // Voice: Calm, Supportive, Transparent, Non-Urgent, Non-Judgmental
 
 export const AI_CONFIG = {
-  // Model configuration
+  // Model configuration - Claude Sonnet 4.5 for ALL users
   model: 'claude-sonnet-4-5-20241022',
+  
+  // Tier-based token limits (Claude Sonnet 4.5 available to all tiers)
+  tierLimits: {
+    free: {
+      maxTokens: 2048,
+      requestsPerMinute: 10,
+      requestsPerDay: 50,
+      features: ['ask', 'basicChat'],
+      adSupported: true,
+    },
+    basic: {
+      maxTokens: 4096,
+      requestsPerMinute: 20,
+      requestsPerDay: 200,
+      features: ['ask', 'chat', 'documentAnalysis'],
+      adSupported: false,
+    },
+    premium: {
+      maxTokens: 6144,
+      requestsPerMinute: 50,
+      requestsPerDay: 500,
+      features: ['ask', 'chat', 'documentAnalysis', 'contractReview', 'caseManagement'],
+      adSupported: false,
+    },
+    enterprise: {
+      maxTokens: 8192,
+      requestsPerMinute: 100,
+      requestsPerDay: -1, // unlimited
+      features: ['ask', 'chat', 'documentAnalysis', 'contractReview', 'caseManagement', 'apiAccess', 'customIntegrations'],
+      adSupported: false,
+    },
+  },
   
   // Default parameters
   maxTokens: 4096,
