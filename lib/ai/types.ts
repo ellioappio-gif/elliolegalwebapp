@@ -1,7 +1,7 @@
 // AI Service Types
 // Claude Sonnet 4.5 enabled for ALL tiers
 
-export type SubscriptionTier = 'free' | 'basic' | 'premium' | 'enterprise'
+export type SubscriptionTier = 'free' | 'basic' | 'premium' | 'enterprise';
 
 export interface TierConfig {
   maxTokens: number

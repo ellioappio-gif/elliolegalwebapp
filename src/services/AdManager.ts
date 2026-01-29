@@ -508,6 +508,8 @@ class AdManager {
   }
 
   private loadFromStorage(): void {
+    if (typeof window === 'undefined') return; // Skip on server-side
+    
     try {
       const data = localStorage.getItem('ellio_ad_manager');
       if (data) {

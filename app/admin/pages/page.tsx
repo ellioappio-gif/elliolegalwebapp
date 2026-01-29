@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useAuth } from '../../auth/AuthContext'
+import { useAuth } from '@/app/auth/AuthContext'
 import { 
   Eye, 
   Settings, 

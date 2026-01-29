@@ -1,0 +1,149 @@
+import Link from 'next/link'
+import { ArrowLeft } from 'lucide-react'
+
+export default function PrivacyPage() {
+  return (
+    <div>
+      {/* Navigation */}
+      <nav className="nav">
+        <div className="nav-container">
+          <Link href="/" className="logo-link">
+            <img className="logo" src="/ellio-logo.svg" alt="ellio legal" />
+            <span className="logo-text">ellio legal</span>
+          </Link>
+          <div className="investor-badge">
+            <div className="badge-dot"></div>
+            Now Raising Series A
+          </div>
+          <div className="nav-links">
+            <Link href="/about">About</Link>
+            <Link href="/features">Features</Link>
+            <Link href="/pricing">Pricing</Link>
+            <Link href="/contact">Contact</Link>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="hero">
+        <div className="container">
+          <div className="hero-brand">
+            <div className="highlight">Privacy Policy</div>
+          </div>
+          <h1>Your Privacy Matters</h1>
+          <p className="hero-subtitle">Learn how we protect and handle your personal information.</p>
+        </div>
+      </section>
+
+      {/* Content */}
+      <div className="section-alt">
+        <div className="content">
+          <h2>Privacy Policy</h2>
+          <p className="subtitle">Last updated: January 26, 2026</p>
+
+          <div className="prose prose-lg max-w-none space-y-8 text-text-secondary">
+            <section>
+              <h2 className="text-2xl font-bold text-text-primary mb-4">Introduction</h2>
+              <p>
+                ellio legal ("we" or "us" or "our") operates the elliolegal.com website (the "Service"). This page informs you of our 
+                policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have 
+                associated with that data.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Information Collection and Use</h2>
+              <p>We collect several different types of information for various purposes to provide and improve our Service to you.</p>
+              
+              <h3 className="text-xl font-semibold text-gray-900 mt-6 mb-3">Types of Data Collected:</h3>
+              <ul className="list-disc pl-6 space-y-2">
+                <li><strong>Personal Data:</strong> Email address, name, phone number, address</li>
+                <li><strong>Usage Data:</strong> Browser type, IP address, pages visited, time and date of visit</li>
+                <li><strong>Document Data:</strong> Legal documents you upload for analysis</li>
+                <li><strong>Cookies:</strong> Data stored on your device for authentication and preferences</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Use of Data</h2>
+              <p>ellio legal uses the collected data for various purposes:</p>
+              <ul className="list-disc pl-6 space-y-2 mt-4">
+                <li>To provide and maintain our Service</li>
+                <li>To notify you about changes to our Service</li>
+                <li>To allow you to participate in interactive features of our Service</li>
+                <li>To provide customer support</li>
+                <li>To gather analysis or valuable information so we can improve our Service</li>
+                <li>To monitor the usage of our Service</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Security of Data</h2>
+              <p>
+                The security of your data is important to us but remember that no method of transmission over the Internet or method of 
+                electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, 
+                we cannot guarantee its absolute security.
+              </p>
+              <p className="mt-4">
+                All documents uploaded are encrypted using bank-level AES-256 encryption and stored securely on our servers.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Changes to This Privacy Policy</h2>
+              <p>
+                We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy 
+                on this page and updating the "effective date" at the top of this Privacy Policy.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Contact Us</h2>
+              <p>
+                If you have any questions about this Privacy Policy, please contact us:
+              </p>
+              <div className="mt-4 p-4 bg-blue-50 rounded-lg">
+                <p className="font-semibold">ellio legal Privacy Team</p>
+                <p>Email: privacy@elliolegal.com</p>
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Your Rights</h2>
+              <p>You have the right to:</p>
+              <ul className="list-disc pl-6 space-y-2 mt-4">
+                <li>Access your personal data</li>
+                <li>Correct inaccurate data</li>
+                <li>Request deletion of your data</li>
+                <li>Opt-out of marketing communications</li>
+                <li>Download your data in a portable format</li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      {/* Chat Fob */}
+      <div className="chat-fob" id="chatFob">
+        <div className="chat-fob-btn">
+          <img src="/ellio-logo.svg" alt="Chat" />
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer>
+        <div className="container text-center">
+          <img className="footer-logo" src="/ellio-logo.svg" alt="ellio legal" />
+          <div className="footer-brand">ellio legal</div>
+          <p>Democratizing access to legal guidance through AI</p>
+          <p>&copy; 2024 ellio legal. All rights reserved.</p>
+          <div className="footer-links">
+            <Link href="/terms">Terms</Link>
+            <Link href="/privacy">Privacy</Link>
+            <Link href="/contact">Contact</Link>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
