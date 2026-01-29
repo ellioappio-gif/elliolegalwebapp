@@ -69,11 +69,11 @@ function UpgradePrompt({ feature, currentTier }: UpgradePromptProps) {
   };
 
   return (
-    <div className="bg-gradient-to-br from-[#E8ECF8] to-[#D4DAF0] border border-[#D4DAF0] rounded-xl p-6 text-center">
-      <div className="w-12 h-12 rounded-full bg-[#F5F7FC] flex items-center justify-center mx-auto mb-4">
-        <Lock className="w-6 h-6 text-[#394C9A]" />
+    <div className="bg-gradient-to-br from-surface-secondary to-surface-tertiary border border-border-subtle rounded-xl p-6 text-center">
+      <div className="w-12 h-12 rounded-full bg-surface-primary flex items-center justify-center mx-auto mb-4">
+        <Lock className="w-6 h-6 text-brand-indigo-700" />
       </div>
-      <h3 className="font-['Quicksand'] text-lg font-semibold text-[#394C9A] mb-2">
+      <h3 className="font-sans text-lg font-semibold text-[#394C9A] mb-2">
         {featureNames[feature] || feature} requires {tierName}
       </h3>
       <p className="text-[#5B6BA8] text-sm mb-4">
@@ -115,7 +115,7 @@ function LimitReachedPrompt({ limit, remaining, currentTier }: LimitReachedPromp
       <div className="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mx-auto mb-4">
         <Lock className="w-6 h-6 text-amber-600" />
       </div>
-      <h3 className="font-['Quicksand'] text-lg font-semibold text-[#394C9A] mb-2">
+      <h3 className="font-sans text-lg font-semibold text-[#394C9A] mb-2">
         {limitNames[limit] || limit} limit reached
       </h3>
       <p className="text-[#5B6BA8] text-sm mb-4">

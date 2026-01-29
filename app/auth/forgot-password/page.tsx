@@ -31,17 +31,17 @@ export default function ForgotPasswordPage() {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center px-4">
         <div className="w-full max-w-md">
           <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
-            <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-6">
+            <div className="w-12 h-12 rounded-full bg-semantic-success-subtle flex items-center justify-center mx-auto mb-6">
               <Check className="w-6 h-6 text-green-600" />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">Check your email</h1>
-            <p className="text-gray-600 mb-6">
+            <h1 className="text-2xl font-bold text-text-primary mb-2">Check your email</h1>
+            <p className="text-text-secondary mb-6">
               We've sent a password reset link to <strong>{email}</strong>
             </p>
-            <p className="text-sm text-gray-600 mb-8">
+            <p className="text-sm text-text-secondary mb-8">
               Check your email and click the link to reset your password. The link expires in 24 hours.
             </p>
-            <Link href="/auth/login" className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
+            <Link href="/auth/login" className="inline-block bg-brand-indigo-600 hover:bg-brand-indigo-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
               Back to Sign In
             </Link>
           </div>
@@ -63,7 +63,7 @@ export default function ForgotPasswordPage() {
           <p className="text-gray-600 mb-8">Enter your email and we'll send you a link to reset your password.</p>
 
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6 text-sm">
+            <div className="bg-semantic-danger-subtle border border-semantic-danger text-semantic-danger px-4 py-3 rounded-lg mb-6 text-sm">
               {error}
             </div>
           )}
@@ -78,7 +78,7 @@ export default function ForgotPasswordPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full pl-10 pr-4 py-3 border border-border-default rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-indigo-600"
                   placeholder="you@example.com"
                 />
               </div>
@@ -87,7 +87,7 @@ export default function ForgotPasswordPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-semibold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
+              className="w-full bg-brand-indigo-600 hover:bg-brand-indigo-700 disabled:bg-surface-secondary disabled:text-text-secondary text-white font-semibold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
             >
               {loading ? (
                 <>

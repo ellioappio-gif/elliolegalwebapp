@@ -151,10 +151,10 @@ function DocumentsContent() {
 
   const statusBadge = (status: Document['status']) => {
     const styles = {
-      analyzing: 'bg-blue-100 text-blue-700',
-      analyzed: 'bg-green-100 text-green-700',
-      ocr_complete: 'bg-purple-100 text-purple-700',
-      pending: 'bg-yellow-100 text-yellow-700',
+      analyzing: 'bg-semantic-info-subtle text-semantic-info',
+      analyzed: 'bg-semantic-success-subtle text-semantic-success',
+      ocr_complete: 'bg-brand-indigo-400 text-brand-indigo-600',
+      pending: 'bg-semantic-warning-subtle text-semantic-warning',
     }
     const labels = {
       analyzing: 'Analyzing...',
@@ -175,12 +175,12 @@ function DocumentsContent() {
         <div className="flex items-center justify-between mb-6">
           <div>
             <div className="flex items-center gap-3 mb-2">
-              <div className="w-10 h-10 rounded-xl bg-[#10b981]/10 flex items-center justify-center">
-                <FileText className="w-5 h-5 text-[#10b981]" />
+              <div className="w-10 h-10 rounded-xl bg-semantic-success-subtle flex items-center justify-center">
+                <FileText className="w-5 h-5 text-semantic-success" />
               </div>
-              <h1 className="text-2xl font-semibold text-[#0f172a]">Documents</h1>
+              <h1 className="text-2xl font-semibold text-text-primary">Documents</h1>
             </div>
-            <p className="text-[#64748b]">
+            <p className="text-text-secondary">
               {documents.length} documents • {remaining === 'unlimited' ? 'Unlimited uploads' : `${remaining} uploads remaining`}
             </p>
           </div>
@@ -221,28 +221,28 @@ function DocumentsContent() {
           
           <div className="flex items-center gap-2">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-tertiary" />
               <input
                 type="text"
                 placeholder="Search documents..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-9 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#10b981] w-64"
+                className="pl-9 pr-4 py-2 border border-border-default rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-indigo-600 w-64"
               />
             </div>
             
-            <div className="flex bg-gray-100 rounded-lg p-1">
+            <div className="flex bg-surface-secondary rounded-lg p-1">
               <button
                 onClick={() => setViewMode('list')}
                 className={`p-1.5 rounded ${viewMode === 'list' ? 'bg-white shadow' : ''}`}
               >
-                <List className="w-4 h-4 text-gray-600" />
+                <List className="w-4 h-4 text-text-secondary" />
               </button>
               <button
                 onClick={() => setViewMode('grid')}
                 className={`p-1.5 rounded ${viewMode === 'grid' ? 'bg-white shadow' : ''}`}
               >
-                <Grid3X3 className="w-4 h-4 text-gray-600" />
+                <Grid3X3 className="w-4 h-4 text-text-secondary" />
               </button>
             </div>
           </div>
@@ -250,7 +250,7 @@ function DocumentsContent() {
 
         {/* Upload area */}
         <FeatureGate limit="documentsPerMonth" showUpgradePrompt={false}>
-          <div className={`bg-white rounded-xl border-2 border-dashed ${isWithinLimit ? 'border-[#10b981]/50 hover:border-[#10b981]' : 'border-gray-200'} p-8 text-center mb-6 transition-colors`}>
+          <div className={`bg-white rounded-xl border-2 border-dashed ${isWithinLimit ? 'border-semantic-success/50 hover:border-semantic-success' : 'border-border-default'} p-8 text-center mb-6 transition-colors`}>
             <input
               type="file"
               multiple
@@ -276,10 +276,10 @@ function DocumentsContent() {
 
         {/* Documents */}
         {filteredDocuments.length === 0 ? (
-          <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
-            <FileText className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-            <h2 className="text-xl font-semibold text-gray-900 mb-2">No documents found</h2>
-            <p className="text-gray-600">
+          <div className="bg-white rounded-xl border border-border-default p-12 text-center">
+            <FileText className="w-12 h-12 text-text-tertiary mx-auto mb-4" />
+            <h2 className="text-xl font-semibold text-text-primary mb-2">No documents found</h2>
+            <p className="text-text-secondary">
               {searchTerm ? 'Try a different search term' : 
                tabFilter === 'starred' ? 'Star documents to see them here' :
                tabFilter === 'recent' ? 'Recently viewed documents will appear here' :
@@ -287,14 +287,14 @@ function DocumentsContent() {
             </p>
           </div>
         ) : viewMode === 'list' ? (
-          <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <div className="bg-white rounded-xl border border-border-default overflow-hidden">
             <div className="divide-y divide-gray-200">
               {filteredDocuments.map(doc => (
-                <div key={doc.id} className="px-6 py-4 hover:bg-gray-50 transition-colors">
+                <div key={doc.id} className="px-6 py-4 hover:bg-neutral-50 transition-colors">
                   <div className="flex items-center gap-4">
                     <button
                       onClick={() => handleToggleStar(doc.id)}
-                      className="p-1 hover:bg-gray-100 rounded"
+                      className="p-1 hover:bg-neutral-100 rounded"
                     >
                       <Star className={`w-5 h-5 ${doc.starred ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`} />
                     </button>
@@ -322,7 +322,7 @@ function DocumentsContent() {
                       {doc.tags.length > 0 && (
                         <div className="flex gap-1 mt-1">
                           {doc.tags.map(tag => (
-                            <span key={tag} className="inline-flex items-center gap-1 px-2 py-0.5 bg-gray-100 text-gray-600 text-xs rounded">
+                            <span key={tag} className="inline-flex items-center gap-1 px-2 py-0.5 bg-neutral-100 text-neutral-600 text-xs rounded">
                               <Tag className="w-3 h-3" />
                               {tag}
                             </span>
@@ -342,7 +342,7 @@ function DocumentsContent() {
                             disabled={processingOCR === doc.id}
                             className={`p-2 rounded-lg transition-colors ${
                               doc.ocrText 
-                                ? 'bg-purple-50 text-purple-600 hover:bg-purple-100' 
+                                ? 'bg-brand-indigo-400 text-brand-indigo-600 hover:bg-brand-indigo-500' 
                                 : 'hover:bg-gray-100 text-gray-500'
                             }`}
                             title={doc.ocrText ? 'View OCR Text' : 'Run OCR'}

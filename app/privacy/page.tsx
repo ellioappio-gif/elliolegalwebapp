@@ -5,20 +5,20 @@ import { ArrowLeft } from 'lucide-react'
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
+    <div className="min-h-screen bg-neutral-50 py-12 px-4">
       <div className="max-w-4xl mx-auto">
-        <Link href="/" className="flex items-center gap-2 text-blue-600 hover:text-blue-700 mb-8">
+        <Link href="/" className="flex items-center gap-2 text-brand-indigo-600 hover:text-brand-indigo-700 mb-8">
           <ArrowLeft className="w-5 h-5" />
           Back to Home
         </Link>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-8 md:p-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Privacy Policy</h1>
-          <p className="text-gray-600 mb-8">Last updated: January 26, 2026</p>
+        <div className="bg-white rounded-xl border border-border-default p-8 md:p-12">
+          <h1 className="text-4xl font-bold text-text-primary mb-2">Privacy Policy</h1>
+          <p className="text-text-secondary mb-8">Last updated: January 26, 2026</p>
 
-          <div className="prose prose-lg max-w-none space-y-8 text-gray-700">
+          <div className="prose prose-lg max-w-none space-y-8 text-text-secondary">
             <section>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Introduction</h2>
+              <h2 className="text-2xl font-bold text-text-primary mb-4">Introduction</h2>
               <p>
                 ellio legal ("we" or "us" or "our") operates the elliolegal.com website (the "Service"). This page informs you of our 
                 policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have 

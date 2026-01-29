@@ -36,7 +36,7 @@ export default function PublicContactPage() {
       
       <div className="max-w-6xl mx-auto py-16 px-4">
         <div className="mb-12 text-center">
-          <h1 className="font-['Quicksand'] text-4xl md:text-5xl font-semibold text-[#394C9A] mb-4">Contact Us</h1>
+          <h1 className="font-sans text-4xl md:text-5xl font-semibold text-brand-indigo-700 mb-4">Contact Us</h1>
           <div className="w-20 h-1 bg-gradient-to-r from-[#394C9A] to-[#A8D4E6] mx-auto rounded-full mb-4" />
           <p className="text-xl text-[#5B6BA8]">Have questions? We'd love to hear from you. Send us a message!</p>
         </div>
@@ -63,31 +63,31 @@ export default function PublicContactPage() {
               description: 'United States'
             }
           ].map((item, i) => (
-            <div key={i} className="bg-white rounded-2xl border border-[#D4DAF0] p-6 text-center hover:shadow-lg hover:-translate-y-1 transition-all">
+            <div key={i} className="bg-white rounded-2xl border border-border-subtle p-6 text-center hover:shadow-lg hover:-translate-y-1 transition-all">
               <div className="w-12 h-12 rounded-lg bg-[#E8ECF8] flex items-center justify-center mx-auto mb-4">
-                <item.icon className="w-6 h-6 text-[#394C9A]" />
+                <item.icon className="w-6 h-6 text-brand-indigo-700" />
               </div>
-              <h3 className="font-['Quicksand'] text-lg font-semibold text-[#394C9A] mb-2">{item.title}</h3>
-              <p className="font-medium text-[#394C9A] mb-1">{item.content}</p>
+              <h3 className="font-sans text-lg font-semibold text-brand-indigo-700 mb-2">{item.title}</h3>
+              <p className="font-medium text-brand-indigo-700 mb-1">{item.content}</p>
               <p className="text-sm text-[#5B6BA8]">{item.description}</p>
             </div>
           ))}
         </div>
 
         {/* Contact Form */}
-        <div className="bg-white rounded-2xl border border-[#D4DAF0] p-8 md:p-12 max-w-2xl mx-auto">
-          <h2 className="font-['Quicksand'] text-2xl font-bold text-[#394C9A] mb-3">Send us a Message</h2>
+        <div className="bg-white rounded-2xl border border-border-subtle p-8 md:p-12 max-w-2xl mx-auto">
+          <h2 className="font-sans text-2xl font-bold text-brand-indigo-700 mb-3">Send us a Message</h2>
           <div className="w-12 h-1 bg-gradient-to-r from-[#394C9A] to-[#A8D4E6] rounded-full mb-8" />
 
           {submitted && (
-            <div className="bg-green-50 border border-green-200 text-green-700 px-6 py-4 rounded-lg mb-6">
+            <div className="bg-semantic-success-subtle border border-semantic-success text-semantic-success px-6 py-4 rounded-lg mb-6">
               ✓ Thank you! We've received your message and will get back to you soon.
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-[#394C9A] mb-2">Name</label>
+              <label className="block text-sm font-medium text-brand-indigo-700 mb-2">Name</label>
               <input
                 type="text"
                 name="name"
@@ -100,7 +100,7 @@ export default function PublicContactPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#394C9A] mb-2">Email</label>
+              <label className="block text-sm font-medium text-brand-indigo-700 mb-2">Email</label>
               <input
                 type="email"
                 name="email"

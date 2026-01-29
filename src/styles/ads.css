@@ -1,0 +1,760 @@
+/**
+ * Ad System CSS Styles
+ * 
+ * Comprehensive styling for ad components with responsive design,
+ * accessibility features, and professional appearance
+ */
+
+/* ===========================================
+   AD UNIT STYLES
+   ========================================== */
+
+/* Base ad container */
+.ellio-ad-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.ellio-ad-container:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Ad container states */
+.ellio-ad-container.loading {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-style: dashed;
+  border-color: #cbd5e1;
+}
+
+.ellio-ad-container.error {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border-color: #fecaca;
+}
+
+.ellio-ad-container.blocked {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border-color: #fed7aa;
+}
+
+/* Ad slot content */
+.ellio-ad-slot {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Loading state */
+.ellio-ad-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+  color: #64748b;
+}
+
+.ellio-ad-loading-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #e2e8f0;
+  border-top: 2px solid #6366f1;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.ellio-ad-loading-text {
+  font-size: 14px;
+  color: #64748b;
+  text-align: center;
+}
+
+/* Error state */
+.ellio-ad-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+  color: #dc2626;
+  text-align: center;
+}
+
+.ellio-ad-error-icon {
+  width: 32px;
+  height: 32px;
+  color: #dc2626;
+}
+
+.ellio-ad-error-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.ellio-ad-error-message {
+  font-size: 12px;
+  color: #7f1d1d;
+  margin: 0;
+}
+
+/* Ad blocked state */
+.ellio-ad-blocked {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+  text-align: center;
+}
+
+.ellio-ad-blocked-icon {
+  width: 32px;
+  height: 32px;
+  color: #d97706;
+}
+
+.ellio-ad-blocked-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #92400e;
+  margin: 0;
+}
+
+.ellio-ad-blocked-message {
+  font-size: 12px;
+  color: #78350f;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.ellio-ad-blocked-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.ellio-ad-blocked-button:hover {
+  background: linear-gradient(135deg, #5855eb 0%, #6d28d9 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+/* ===========================================
+   RESPONSIVE AD SIZES
+   ========================================== */
+
+/* Banner ads (728x90 desktop, responsive on mobile) */
+.ellio-ad-banner {
+  min-height: 90px;
+  max-width: 728px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .ellio-ad-banner {
+    min-height: 50px;
+    max-width: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ellio-ad-banner {
+    min-height: 50px;
+    max-width: 300px;
+  }
+}
+
+/* Rectangle ads (300x250) */
+.ellio-ad-rectangle {
+  width: 300px;
+  height: 250px;
+  min-height: 250px;
+}
+
+@media (max-width: 768px) {
+  .ellio-ad-rectangle {
+    width: 280px;
+    height: 225px;
+    min-height: 225px;
+  }
+}
+
+/* Large rectangle ads (336x280) */
+.ellio-ad-large-rectangle {
+  width: 336px;
+  height: 280px;
+  min-height: 280px;
+}
+
+@media (max-width: 768px) {
+  .ellio-ad-large-rectangle {
+    width: 300px;
+    height: 250px;
+    min-height: 250px;
+  }
+}
+
+/* Leaderboard ads (728x90) */
+.ellio-ad-leaderboard {
+  width: 728px;
+  height: 90px;
+  min-height: 90px;
+}
+
+@media (max-width: 768px) {
+  .ellio-ad-leaderboard {
+    width: 320px;
+    height: 50px;
+    min-height: 50px;
+  }
+}
+
+/* Skyscraper ads (160x600) */
+.ellio-ad-skyscraper {
+  width: 160px;
+  height: 600px;
+  min-height: 600px;
+}
+
+@media (max-width: 1024px) {
+  .ellio-ad-skyscraper {
+    display: none; /* Hide on smaller screens */
+  }
+}
+
+/* Mobile banner (320x50) */
+.ellio-ad-mobile-banner {
+  width: 320px;
+  height: 50px;
+  min-height: 50px;
+}
+
+@media (min-width: 769px) {
+  .ellio-ad-mobile-banner {
+    display: none; /* Hide on desktop */
+  }
+}
+
+/* ===========================================
+   AD PLACEMENT STYLES
+   ========================================== */
+
+/* Inline content ads */
+.ellio-ad-inline {
+  margin: 32px auto;
+  max-width: 100%;
+}
+
+/* Sidebar ads */
+.ellio-ad-sidebar {
+  position: sticky;
+  top: 24px;
+  margin-bottom: 24px;
+}
+
+/* Header/footer ads */
+.ellio-ad-header,
+.ellio-ad-footer {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0;
+}
+
+/* Floating/overlay ads */
+.ellio-ad-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid #e2e8f0;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.ellio-ad-overlay-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  backdrop-filter: blur(4px);
+}
+
+/* Close button for overlay ads */
+.ellio-ad-overlay-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ellio-ad-overlay-close:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  transform: scale(1.05);
+}
+
+/* ===========================================
+   UPGRADE MODAL STYLES
+   ========================================== */
+
+.ellio-upgrade-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  border: 1px solid #e2e8f0;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: hidden;
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+.ellio-upgrade-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+  animation: backdropFadeIn 0.3s ease-out;
+}
+
+/* Upgrade modal content */
+.ellio-upgrade-modal-content {
+  padding: 32px;
+  text-align: center;
+  background: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.ellio-upgrade-modal-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.ellio-upgrade-modal-header {
+  position: relative;
+  z-index: 1;
+}
+
+.ellio-upgrade-modal-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ellio-upgrade-modal-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.ellio-upgrade-modal-subtitle {
+  font-size: 16px;
+  opacity: 0.9;
+  margin-bottom: 32px;
+  line-height: 1.4;
+}
+
+/* Pricing comparison */
+.ellio-upgrade-pricing {
+  background: white;
+  color: #1f2937;
+  padding: 32px;
+  border-radius: 16px;
+  margin: 24px -32px -32px;
+  position: relative;
+  z-index: 1;
+}
+
+.ellio-upgrade-pricing-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.ellio-upgrade-pricing-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1f2937;
+}
+
+.ellio-upgrade-pricing-subtitle {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.ellio-upgrade-pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 640px) {
+  .ellio-upgrade-pricing-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+.ellio-upgrade-pricing-plan {
+  padding: 24px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.ellio-upgrade-pricing-plan.recommended {
+  border-color: #6366f1;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  transform: scale(1.02);
+}
+
+.ellio-upgrade-pricing-plan:hover {
+  border-color: #6366f1;
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.15);
+}
+
+.ellio-upgrade-pricing-plan-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1f2937;
+}
+
+.ellio-upgrade-pricing-plan-price {
+  font-size: 32px;
+  font-weight: 700;
+  color: #6366f1;
+  margin-bottom: 8px;
+}
+
+.ellio-upgrade-pricing-plan-period {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+.ellio-upgrade-pricing-plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+}
+
+.ellio-upgrade-pricing-plan-feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.ellio-upgrade-pricing-plan-feature-icon {
+  width: 16px;
+  height: 16px;
+  color: #10b981;
+}
+
+/* Action buttons */
+.ellio-upgrade-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ellio-upgrade-modal-button {
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.ellio-upgrade-modal-button-primary {
+  background: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
+  color: white;
+}
+
+.ellio-upgrade-modal-button-primary:hover {
+  background: linear-gradient(135deg, #5855eb 0%, #6d28d9 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+}
+
+.ellio-upgrade-modal-button-secondary {
+  background: transparent;
+  color: #6b7280;
+  border: 1px solid #d1d5db;
+}
+
+.ellio-upgrade-modal-button-secondary:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+  color: #374151;
+}
+
+/* Close button */
+.ellio-upgrade-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: white;
+  z-index: 2;
+}
+
+.ellio-upgrade-modal-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* ===========================================
+   COOKIE CONSENT STYLES
+   ========================================== */
+
+.ellio-cookie-consent {
+  font-family: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.ellio-cookie-toggle {
+  width: 48px;
+  height: 24px;
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  outline: none;
+}
+
+.ellio-cookie-toggle.enabled {
+  background: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
+}
+
+.ellio-cookie-toggle.disabled {
+  background: #d1d5db;
+}
+
+.ellio-cookie-toggle-handle {
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.ellio-cookie-toggle.enabled .ellio-cookie-toggle-handle {
+  transform: translateX(24px);
+}
+
+.ellio-cookie-toggle.disabled .ellio-cookie-toggle-handle {
+  transform: translateX(2px);
+}
+
+/* ===========================================
+   ANIMATIONS
+   ========================================== */
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes modalSlideIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes backdropFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(99, 102, 241, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+  }
+}
+
+/* Pulse animation for loading states */
+.ellio-pulse {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* ===========================================
+   ACCESSIBILITY
+   ========================================== */
+
+/* Focus states */
+.ellio-ad-container:focus-within,
+.ellio-upgrade-modal-button:focus,
+.ellio-cookie-toggle:focus {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .ellio-ad-container {
+    border-width: 2px;
+    border-color: #000000;
+  }
+  
+  .ellio-upgrade-modal-content {
+    background: #000000;
+    color: #ffffff;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .ellio-ad-loading-spinner {
+    animation: none;
+    border: 2px solid #6366f1;
+    border-radius: 50%;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .ellio-ad-container {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    border-color: #374151;
+  }
+  
+  .ellio-upgrade-modal {
+    background: #1f2937;
+    border-color: #374151;
+  }
+  
+  .ellio-upgrade-pricing {
+    background: #111827;
+    color: #f9fafb;
+  }
+  
+  .ellio-upgrade-pricing-title,
+  .ellio-upgrade-pricing-plan-name {
+    color: #f9fafb;
+  }
+  
+  .ellio-cookie-consent {
+    background: #1f2937;
+    border-color: #374151;
+    color: #f9fafb;
+  }
+}
+
+/* Print styles */
+@media print {
+  .ellio-ad-container,
+  .ellio-upgrade-modal,
+  .ellio-upgrade-modal-backdrop,
+  .ellio-cookie-consent {
+    display: none !important;
+  }
+}

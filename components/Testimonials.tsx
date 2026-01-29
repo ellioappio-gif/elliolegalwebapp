@@ -67,7 +67,7 @@ export default function Testimonials() {
               Loved by Thousands
             </span>
           </div>
-          <h2 className="font-['Quicksand'] text-5xl md:text-6xl font-bold text-white mb-6">
+          <h2 className="font-sans text-5xl md:text-6xl font-bold text-white mb-6">
             What Our Users Say
           </h2>
           <p className="text-xl text-white/90 max-w-3xl mx-auto">
@@ -105,7 +105,7 @@ export default function Testimonials() {
                   {testimonial.initials}
                 </div>
                 <div>
-                  <div className="font-['Quicksand'] font-bold text-white">
+                  <div className="font-sans font-bold text-white">
                     {testimonial.name}
                   </div>
                   <div className="text-white/80 text-sm">
@@ -120,19 +120,19 @@ export default function Testimonials() {
         {/* Trust Stats */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           <div>
-            <div className="font-['Quicksand'] text-5xl font-bold text-white mb-2">50K+</div>
+            <div className="font-sans text-5xl font-bold text-white mb-2">50K+</div>
             <div className="text-white/80">Happy Users</div>
           </div>
           <div>
-            <div className="font-['Quicksand'] text-5xl font-bold text-white mb-2">4.9</div>
+            <div className="font-sans text-5xl font-bold text-white mb-2">4.9</div>
             <div className="text-white/80">Average Rating</div>
           </div>
           <div>
-            <div className="font-['Quicksand'] text-5xl font-bold text-white mb-2">100K+</div>
+            <div className="font-sans text-5xl font-bold text-white mb-2">100K+</div>
             <div className="text-white/80">Documents Reviewed</div>
           </div>
           <div>
-            <div className="font-['Quicksand'] text-5xl font-bold text-white mb-2">$50M+</div>
+            <div className="font-sans text-5xl font-bold text-white mb-2">$50M+</div>
             <div className="text-white/80">Saved in Legal Fees</div>
           </div>
         </div>

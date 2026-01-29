@@ -124,9 +124,9 @@ function CasesContent() {
           <div>
             <div className="flex items-center gap-3 mb-2">
               <div className="w-10 h-10 rounded-xl bg-[#E8ECF8] flex items-center justify-center">
-                <FolderOpen className="w-5 h-5 text-[#394C9A]" />
+                <FolderOpen className="w-5 h-5 text-brand-indigo-700" />
               </div>
-              <h1 className="font-['Quicksand'] text-2xl font-semibold text-[#394C9A]">My Cases</h1>
+              <h1 className="font-sans text-2xl font-semibold text-brand-indigo-700">My Cases</h1>
             </div>
             <p className="text-[#5B6BA8]">
               {cases.length} case{cases.length !== 1 ? 's' : ''} • 
@@ -147,7 +147,7 @@ function CasesContent() {
         </div>
 
         {/* Search and Filters */}
-        <div className="bg-white rounded-xl border border-[#D4DAF0] p-4 mb-6">
+        <div className="bg-white rounded-xl border border-border-subtle p-4 mb-6">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#5B6BA8]" />
@@ -156,7 +156,7 @@ function CasesContent() {
                 placeholder="Search cases..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-[#D4DAF0] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#394C9A]"
+                className="w-full pl-10 pr-4 py-2 border border-border-subtle rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-indigo-700"
               />
             </div>
             
@@ -190,9 +190,9 @@ function CasesContent() {
 
         {/* Cases List */}
         {filteredCases.length === 0 ? (
-          <div className="bg-white rounded-xl border border-[#D4DAF0] p-12 text-center">
+          <div className="bg-white rounded-xl border border-border-subtle p-12 text-center">
             <FolderOpen className="w-12 h-12 text-[#D4DAF0] mx-auto mb-4" />
-            <h2 className="font-['Quicksand'] text-xl font-semibold text-[#394C9A] mb-2">No cases found</h2>
+            <h2 className="font-sans text-xl font-semibold text-brand-indigo-700 mb-2">No cases found</h2>
             <p className="text-[#5B6BA8] mb-6">
               {searchTerm || statusFilter !== 'all' || priorityFilter !== 'all'
                 ? 'Try adjusting your search or filters'

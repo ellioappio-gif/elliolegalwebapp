@@ -75,7 +75,7 @@ export default function DashboardLayout({ children, onShowTutorial }: DashboardL
           flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200
           ${active 
             ? 'bg-gradient-to-r from-[#394C9A] to-[#5B6BA8] text-white shadow-sm' 
-            : 'text-[#5B6BA8] hover:bg-[#E8ECF8] hover:text-[#394C9A]'
+            : 'text-text-tertiary hover:bg-surface-secondary hover:text-brand-indigo-700'
           }
           ${collapsed ? 'justify-center' : ''}
         `}
@@ -92,11 +92,11 @@ export default function DashboardLayout({ children, onShowTutorial }: DashboardL
   return (
     <div className="min-h-screen bg-[#F5F7FC]">
       {/* Mobile header */}
-      <header className="lg:hidden sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-[#D4DAF0] px-4 py-3">
+      <header className="lg:hidden sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-border-subtle px-4 py-3">
         <div className="flex items-center justify-between">
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className="p-2 text-[#394C9A] hover:bg-[#E8ECF8] rounded-lg"
+            className="p-2 text-brand-indigo-700 hover:bg-surface-secondary rounded-lg"
           >
             <Menu className="w-6 h-6" />
           </button>
@@ -200,12 +200,12 @@ export default function DashboardLayout({ children, onShowTutorial }: DashboardL
       <aside 
         className={`
           hidden lg:flex lg:flex-col lg:fixed lg:inset-y-0 lg:left-0 lg:z-50
-          bg-white border-r border-[#D4DAF0] transition-all duration-300
+          bg-white border-r border-border-subtle transition-all duration-300
           ${sidebarCollapsed ? 'lg:w-20' : 'lg:w-64'}
         `}
       >
         {/* Logo */}
-        <div className={`flex items-center h-16 px-4 border-b border-[#D4DAF0] ${sidebarCollapsed ? 'justify-center' : 'justify-between'}`}>
+        <div className={`flex items-center h-16 px-4 border-b border-border-subtle ${sidebarCollapsed ? 'justify-center' : 'justify-between'}`}>
           <Link href="/dashboard" className="flex items-center gap-2">
             <img 
               src="https://ellio.solutions/logo.png" 
@@ -217,13 +217,13 @@ export default function DashboardLayout({ children, onShowTutorial }: DashboardL
               }}
             />
             {!sidebarCollapsed && (
-              <span className="text-xl font-['Quicksand'] font-semibold text-[#394C9A]">ellio</span>
+              <span className="text-xl font-sans font-semibold text-brand-indigo-700">ellio</span>
             )}
           </Link>
           {!sidebarCollapsed && (
             <button
               onClick={() => setSidebarCollapsed(true)}
-              className="p-1.5 text-[#5B6BA8] hover:text-[#394C9A] hover:bg-[#E8ECF8] rounded-lg transition-colors"
+              className="p-1.5 text-text-tertiary hover:text-brand-indigo-700 hover:bg-surface-secondary rounded-lg transition-colors"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
@@ -234,7 +234,7 @@ export default function DashboardLayout({ children, onShowTutorial }: DashboardL
         {sidebarCollapsed && (
           <button
             onClick={() => setSidebarCollapsed(false)}
-            className="mx-auto mt-4 p-1.5 text-[#5B6BA8] hover:text-[#394C9A] hover:bg-[#E8ECF8] rounded-lg transition-colors"
+            className="mx-auto mt-4 p-1.5 text-text-tertiary hover:text-brand-indigo-700 hover:bg-surface-secondary rounded-lg transition-colors"
           >
             <ChevronRight className="w-5 h-5" />
           </button>
@@ -248,7 +248,7 @@ export default function DashboardLayout({ children, onShowTutorial }: DashboardL
             ))}
           </div>
 
-          <div className={`my-4 border-t border-[#D4DAF0] ${sidebarCollapsed ? 'mx-2' : ''}`} />
+          <div className={`my-4 border-t border-border-subtle ${sidebarCollapsed ? 'mx-2' : ''}`} />
 
           <div className="space-y-1">
             {secondaryNavigation.map((item) => (
@@ -258,13 +258,13 @@ export default function DashboardLayout({ children, onShowTutorial }: DashboardL
         </nav>
 
         {/* Help & User section */}
-        <div className={`border-t border-[#D4DAF0] ${sidebarCollapsed ? 'p-2' : 'p-3'}`}>
+        <div className={`border-t border-border-subtle ${sidebarCollapsed ? 'p-2' : 'p-3'}`}>
           {/* Help button */}
           <button
             onClick={onShowTutorial}
             className={`
               w-full flex items-center gap-3 px-3 py-2.5 mb-2 rounded-lg
-              text-[#5B6BA8] hover:bg-[#E8ECF8] hover:text-[#394C9A] transition-colors
+              text-text-tertiary hover:bg-surface-secondary hover:text-brand-indigo-700 transition-colors
               ${sidebarCollapsed ? 'justify-center' : ''}
             `}
             title={sidebarCollapsed ? 'Help & Tutorial' : undefined}
@@ -280,7 +280,7 @@ export default function DashboardLayout({ children, onShowTutorial }: DashboardL
             </div>
             {!sidebarCollapsed && (
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-[#394C9A] truncate">{user?.name}</p>
+                <p className="text-sm font-medium text-brand-indigo-700 truncate">{user?.name}</p>
                 <p className="text-xs text-[#5B6BA8] truncate">{user?.email}</p>
               </div>
             )}

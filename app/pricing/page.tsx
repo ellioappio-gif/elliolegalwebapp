@@ -17,18 +17,18 @@ export default function PricingPage() {
       <div className="max-w-7xl mx-auto py-16 px-4">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="font-['Quicksand'] text-4xl md:text-5xl font-semibold text-[#394C9A] mb-4">Simple, Transparent Pricing</h1>
+          <h1 className="font-sans text-4xl md:text-5xl font-semibold text-brand-indigo-700 mb-4">Simple, Transparent Pricing</h1>
           <div className="w-20 h-1 bg-gradient-to-r from-[#394C9A] to-[#A8D4E6] mx-auto rounded-full mb-4" />
           <p className="text-lg text-[#5B6BA8] mb-8">Choose the plan that fits your legal needs</p>
           
           {/* Billing Toggle */}
-          <div className="inline-flex items-center gap-4 bg-white rounded-full p-1 border border-[#D4DAF0]">
+          <div className="inline-flex items-center gap-4 bg-white rounded-full p-1 border border-border-subtle">
             <button
               onClick={() => setBillingCycle('monthly')}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
                 billingCycle === 'monthly' 
-                  ? 'bg-gradient-to-r from-[#394C9A] to-[#5B6BA8] text-white' 
-                  : 'text-[#5B6BA8] hover:text-[#394C9A]'
+                  ? 'bg-gradient-to-r from-brand-indigo-700 to-brand-indigo-500 text-white' 
+                  : 'text-text-tertiary hover:text-brand-indigo-700'
               }`}
             >
               Monthly
@@ -37,8 +37,8 @@ export default function PricingPage() {
               onClick={() => setBillingCycle('annual')}
               className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
                 billingCycle === 'annual' 
-                  ? 'bg-gradient-to-r from-[#394C9A] to-[#5B6BA8] text-white' 
-                  : 'text-[#5B6BA8] hover:text-[#394C9A]'
+                  ? 'bg-gradient-to-r from-brand-indigo-700 to-brand-indigo-500 text-white' 
+                  : 'text-text-tertiary hover:text-brand-indigo-700'
               }`}
             >
               Annual <span className="text-[#10B981] ml-1">Save 17%</span>
@@ -59,18 +59,18 @@ export default function PricingPage() {
                 className={`rounded-2xl p-6 border-2 transition-all hover:shadow-xl hover:-translate-y-1 relative ${
                   isPopular 
                     ? 'bg-gradient-to-b from-white to-[#F5F7FC] border-[#394C9A] border-3 transform scale-105 z-10 shadow-lg' 
-                    : 'bg-white text-[#394C9A] border-[#D4DAF0]'
+                    : 'bg-white text-brand-indigo-700 border-border-subtle'
                 }`}
               >
                 {tier.badge && (
                   <div className={`absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold ${
-                    isPopular ? 'bg-gradient-to-r from-[#394C9A] to-[#5B6BA8] text-white' : 'bg-[#E8ECF8] text-[#394C9A]'
+                    isPopular ? 'bg-gradient-to-r from-brand-indigo-700 to-brand-indigo-500 text-white' : 'bg-surface-secondary text-brand-indigo-700'
                   }`}>
                     {tier.badge}
                   </div>
                 )}
                 
-                <h3 className="font-['Quicksand'] text-xl font-bold mb-2 mt-2 text-[#394C9A]">
+                <h3 className="font-sans text-xl font-bold mb-2 mt-2 text-brand-indigo-700">
                   {tier.name}
                 </h3>
                 <p className="text-sm mb-6 text-[#5B6BA8]">
@@ -78,7 +78,7 @@ export default function PricingPage() {
                 </p>
                 
                 <div className="mb-6">
-                  <span className="font-['Quicksand'] text-4xl font-bold text-[#394C9A]">
+                  <span className="font-sans text-4xl font-bold text-brand-indigo-700">
                     {tier.pricing.monthly === 0 ? 'Free' : `$${price.toFixed(2)}`}
                   </span>
                   {tier.pricing.monthly > 0 && (
@@ -161,8 +161,8 @@ export default function PricingPage() {
         </div>
 
         {/* FAQ Section */}
-        <div className="bg-white rounded-2xl border border-[#D4DAF0] p-12 mb-12">
-          <h2 className="font-['Quicksand'] text-3xl font-semibold text-[#394C9A] mb-3 text-center">Frequently Asked Questions</h2>
+        <div className="bg-white rounded-2xl border border-border-subtle p-12 mb-12">
+          <h2 className="font-sans text-3xl font-semibold text-brand-indigo-700 mb-3 text-center">Frequently Asked Questions</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-[#394C9A] to-[#A8D4E6] mx-auto rounded-full mb-10" />
           
           <div className="grid md:grid-cols-2 gap-8">
@@ -185,7 +185,7 @@ export default function PricingPage() {
               }
             ].map((item, i) => (
               <div key={i}>
-                <h3 className="font-['Quicksand'] text-lg font-semibold text-[#394C9A] mb-3">{item.q}</h3>
+                <h3 className="font-sans text-lg font-semibold text-brand-indigo-700 mb-3">{item.q}</h3>
                 <p className="text-[#5B6BA8]">{item.a}</p>
               </div>
             ))}
@@ -194,9 +194,9 @@ export default function PricingPage() {
 
         {/* CTA Section */}
         <div className="bg-gradient-to-r from-[#394C9A] to-[#5B6BA8] rounded-2xl p-12 text-center text-white">
-          <h2 className="font-['Quicksand'] text-3xl font-bold mb-4">Ready to get started?</h2>
+          <h2 className="font-sans text-3xl font-bold mb-4">Ready to get started?</h2>
           <p className="text-xl text-white/80 mb-8">Join thousands of people already using ellio legal</p>
-          <Link href="/auth/signup" className="inline-block bg-white text-[#394C9A] px-8 py-3 rounded-lg font-semibold hover:bg-[#F5F7FC] transition-colors">
+          <Link href="/auth/signup" className="inline-block bg-white text-brand-indigo-700 px-8 py-3 rounded-lg font-semibold hover:bg-neutral-50 transition-colors">
             Create Free Account
           </Link>
         </div>

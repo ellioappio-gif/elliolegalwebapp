@@ -1,202 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap');
+
 @import "tailwindcss/preflight" layer(base);
 @import "tailwindcss/utilities" layer(utilities);
 
-/* Ellio Legal Brand Design System */
-:root {
-  /* Primary Brand Colors - From Landing Page */
-  --deep-indigo: #394C9A;
-  --medium-blue: #5B6BA8;
-  --soft-blue: #D4DAF0;
-  --pale-blue: #E8ECF8;
-  --lightest-blue: #F5F7FC;
-  --sky-blue: #A8D4E6;
-  --light-sky: #C5E5F2;
-  
-  /* Neutrals */
-  --white: #FFFFFF;
-  --gray: #6B7280;
-  --light-gray: #9CA3AF;
-  --dark-gray: #374151;
-  
-  /* Semantic */
-  --success: #10B981;
-  --warning: #F59E0B;
-  --error: #EF4444;
-  
-  /* Typography */
-  --font-heading: 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
-}
+/* ===========================================
+   ELLIO DESIGN SYSTEM - VERSION 1.0.0
+   Based on ellio elephant logo palette
+   =========================================== */
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
+  :root {
+    /* ========== PRIMARY BRAND COLORS ========== */
+    /* Derived from ellio elephant logo palette */
+    --color-primary-900: #394C9A;    /* Deep Indigo - Primary brand, headers, CTAs */
+    --color-primary-700: #4a5fb8;    /* Medium Indigo - Hover states */
+    --color-primary-500: #5a6fb8;    /* Light Indigo - Secondary elements */
+    --color-primary-300: #85b0f2;    /* Sky Blue - Accents, highlights */
+    --color-primary-200: #a8c8f5;    /* Soft Blue - Borders, dividers */
+    --color-primary-100: #c5daf8;    /* Pale Blue - Card backgrounds */
+    --color-primary-50: #dce8fb;     /* Lighter Blue - Section backgrounds */
+    --color-primary-25: #f0f5fd;     /* Off White - Page backgrounds */
+
+    /* Alias names for easier reference */
+    --deep-indigo: #394C9A;
+    --medium-blue: #5a6fb8;
+    --sky-blue: #85b0f2;
+    --soft-blue: #a8c8f5;
+    --pale-blue: #c5daf8;
+    --off-white: #f0f5fd;
+    --light-bg: #f9f9fe;
+    --white: #FFFFFF;
+
+    /* ========== NEUTRAL COLORS ========== */
+    --gray-900: #1a202c;
+    --gray-800: #2d3748;
+    --gray-700: #4a5568;
+    --gray-600: #718096;
+    --gray-500: #a0aec0;
+    --gray-400: #cbd5e0;
+    --gray-300: #e2e8f0;
+    --gray-200: #edf2f7;
+    --gray-100: #f7fafc;
+
+    /* ========== SEMANTIC COLORS ========== */
+    --success: #10b981;
+    --success-light: #d1fae5;
+    --success-dark: #059669;
+    
+    --warning: #f59e0b;
+    --warning-light: #fef3c7;
+    --warning-dark: #d97706;
+    
+    --error: #ef4444;
+    --error-light: #fee2e2;
+    --error-dark: #dc2626;
+    
+    --info: #3b82f6;
+    --info-light: #dbeafe;
+    --info-dark: #2563eb;
+
+    /* ========== GRADIENTS ========== */
+    --gradient-primary: linear-gradient(135deg, #394C9A, #5a6fb8);
+    --gradient-primary-hover: linear-gradient(135deg, #4a5fb8, #6667d4);
+    --gradient-hero: linear-gradient(180deg, #f0f5fd 0%, #FFFFFF 100%);
+    --gradient-card: linear-gradient(135deg, #FFFFFF, #f9f9fe);
+    --gradient-accent: linear-gradient(135deg, #85b0f2, #a8c8f5);
+
+    /* ========== TYPOGRAPHY ========== */
+    --font-display: 'Quicksand', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* ========== SHADOWS ========== */
+    --shadow-xs: 0 1px 2px rgba(57, 76, 154, 0.05);
+    --shadow-sm: 0 2px 4px rgba(57, 76, 154, 0.06);
+    --shadow-md: 0 4px 15px rgba(57, 76, 154, 0.1);
+    --shadow-lg: 0 10px 25px rgba(57, 76, 154, 0.12);
+    --shadow-xl: 0 10px 40px rgba(57, 76, 154, 0.15);
+    --shadow-card: 0 4px 20px rgba(57, 76, 154, 0.1);
+    --shadow-card-hover: 0 10px 40px rgba(57, 76, 154, 0.15);
+    --shadow-button: 0 4px 15px rgba(57, 76, 154, 0.2);
+    --shadow-button-hover: 0 8px 25px rgba(57, 76, 154, 0.35);
+
+    /* ========== TRANSITIONS ========== */
+    --transition-fast: 150ms ease;
+    --transition-base: 200ms ease;
+    --transition-slow: 300ms ease;
   }
-  
+
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   body {
     font-family: var(--font-body);
-    background-color: var(--white);
-    color: var(--deep-indigo);
-    line-height: 1.6;
+    color: var(--gray-700);
+    background: var(--gradient-hero);
+    line-height: 1.5;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    font-weight: 600;
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.25;
     color: var(--deep-indigo);
   }
-  
+
   a {
+    color: inherit;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: var(--transition-base);
   }
-  
+
   button {
     cursor: pointer;
-    font-family: var(--font-body);
+    font-family: var(--font-display);
   }
 }
 
-/* Utility Classes */
-@layer utilities {
-  .font-heading {
-    font-family: var(--font-heading);
+/* ellio design system v2.0 - component utilities */
+@layer utilities {  
+  /* Brand colors using design tokens */
+  .text-brand-primary {
+    color: var(--deep-indigo);
   }
   
-  .font-body {
-    font-family: var(--font-body);
+  .text-brand-accent {
+    color: var(--sky-blue);
   }
   
-  /* Brand Gradients */
+  .text-brand-medium {
+    color: var(--medium-blue);
+  }
+
+  /* Brand gradients using design tokens */
   .bg-gradient-brand {
-    background: linear-gradient(135deg, var(--deep-indigo), var(--medium-blue));
+    background: var(--gradient-primary);
   }
   
-  .bg-gradient-sky {
-    background: linear-gradient(135deg, var(--sky-blue), var(--light-sky));
+  .bg-gradient-brand-hover {
+    background: var(--gradient-primary-hover);
   }
   
-  .bg-gradient-soft {
-    background: linear-gradient(135deg, var(--pale-blue), var(--soft-blue));
+  .bg-gradient-hero {
+    background: var(--gradient-hero);
   }
   
-  /* Brand Button Styles */
-  .btn-primary {
-    background: linear-gradient(135deg, var(--deep-indigo), var(--medium-blue));
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-    border: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+  .bg-gradient-card {
+    background: var(--gradient-card);
   }
   
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(57, 76, 154, 0.35);
+  .bg-gradient-accent {
+    background: var(--gradient-accent);
+  }
+
+  /* Brand background colors */
+  .bg-brand-primary {
+    background-color: var(--deep-indigo);
   }
   
-  .btn-secondary {
-    background: transparent;
-    border: 2px solid var(--deep-indigo);
-    color: var(--deep-indigo);
-    padding: 0.75rem 1.5rem;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+  .bg-brand-light {
+    background-color: var(--pale-blue);
   }
   
-  .btn-secondary:hover {
-    background: var(--deep-indigo);
-    color: white;
+  .bg-brand-subtle {
+    background-color: var(--off-white);
+  }
+
+  /* Brand shadows */
+  .shadow-brand-card {
+    box-shadow: var(--shadow-card);
   }
   
-  /* Card Styles */
-  .card-ellio {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 20px;
-    border: 1px solid var(--soft-blue);
-    transition: transform 0.3s, box-shadow 0.3s;
+  .shadow-brand-button {
+    box-shadow: var(--shadow-button);
   }
   
-  .card-ellio:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 25px 50px rgba(57, 76, 154, 0.15);
-  }
-  
-  /* Section Styles */
-  .section-alt {
-    background: var(--lightest-blue);
-  }
-  
-  /* Heading underline decoration */
-  .heading-decorated::after {
-    content: '';
-    display: block;
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--deep-indigo), var(--sky-blue));
-    margin-top: 0.75rem;
-    border-radius: 2px;
-  }
-  
-  .heading-decorated-center::after {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  /* Badge Styles */
-  .badge-brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: linear-gradient(135deg, var(--sky-blue), var(--light-sky));
-    color: var(--deep-indigo);
-    padding: 0.5rem 1.5rem;
-    border-radius: 25px;
-    font-weight: 700;
-    font-size: 0.9rem;
-  }
-  
-  /* Stat Card */
-  .stat-card {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: 16px;
-    text-align: center;
-    border: 1px solid var(--soft-blue);
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  
-  .stat-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--deep-indigo), var(--sky-blue));
-  }
-  
-  .stat-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(57, 76, 154, 0.15);
+  .shadow-brand-xl {
+    box-shadow: var(--shadow-xl);
   }
 }
 
-/* Animation keyframes */
+/* Animation keyframes - respecting prefers-reduced-motion */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(57, 76, 154, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(57, 76, 154, 0.6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -217,19 +236,12 @@
   }
 }
 
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
+@media (prefers-reduced-motion: no-preference) {
+  .animate-slide-up {
+    animation: slideUp 300ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
-  50% {
-    opacity: 0.5;
+  
+  .animate-fade-in {
+    animation: fadeIn 300ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
-}
-
-.animate-slide-up {
-  animation: slideUp 0.3s ease forwards;
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.3s ease forwards;
 }

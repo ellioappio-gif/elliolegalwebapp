@@ -75,11 +75,11 @@ export default function UseCases() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-block mb-4">
-            <span className="bg-[#394C9A]/10 text-[#394C9A] px-4 py-2 rounded-full text-sm font-semibold">
+            <span className="bg-brand-indigo-100 text-brand-indigo-700 px-4 py-2 rounded-full text-sm font-semibold">
               Real-World Applications
             </span>
           </div>
-          <h2 className="font-['Quicksand'] text-5xl md:text-6xl font-bold text-[#394C9A] mb-6">
+          <h2 className="font-sans text-5xl md:text-6xl font-bold text-brand-indigo-700 mb-6">
             We Help With All<br />Legal Situations
           </h2>
           <p className="text-xl text-[#5B6BA8] max-w-3xl mx-auto">
@@ -93,7 +93,7 @@ export default function UseCases() {
             return (
               <div
                 key={index}
-                className="group bg-white p-8 rounded-3xl border-2 border-[#D4DAF0] hover:border-[#394C9A] hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
+                className="group bg-white p-8 rounded-3xl border-2 border-border-subtle hover:border-brand-indigo-700 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
               >
                 <div
                   className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
@@ -101,7 +101,7 @@ export default function UseCases() {
                 >
                   <Icon className="w-8 h-8" style={{ color: useCase.color }} />
                 </div>
-                <h3 className="font-['Quicksand'] text-2xl font-bold text-[#394C9A] mb-6">
+                <h3 className="font-sans text-2xl font-bold text-brand-indigo-700 mb-6">
                   {useCase.title}
                 </h3>
                 <ul className="space-y-3">

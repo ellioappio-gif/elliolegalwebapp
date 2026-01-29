@@ -44,92 +44,92 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#F5F7FC] via-white to-[#E8ECF8] flex items-center justify-center px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-surface-secondary via-white to-neutral-100 flex items-center justify-center px-4 py-8">
       <div className="w-full max-w-md">
         {/* Logo */}
         <Link href="/" className="flex items-center justify-center gap-3 mb-8">
           <img src="/ellio-logo.svg" alt="ellio legal" className="w-10 h-10" />
-          <span className="font-['Quicksand'] text-2xl font-bold text-[#394C9A]">ellio legal</span>
+          <span className="font-sans text-2xl font-bold text-brand-indigo-600">ellio legal</span>
         </Link>
 
         {/* Card */}
-        <div className="bg-white rounded-2xl shadow-lg border border-[#D4DAF0] p-8">
-          <h1 className="font-['Quicksand'] text-2xl font-bold text-[#394C9A] mb-2">Create your account</h1>
-          <p className="text-[#5B6BA8] mb-8">Start using your AI legal assistant</p>
+        <div className="bg-white rounded-2xl shadow-lg border border-border-subtle p-8">
+          <h1 className="font-sans text-2xl font-bold text-brand-indigo-600 mb-2">Create your account</h1>
+          <p className="text-text-secondary mb-8">Start using your AI legal assistant</p>
 
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6 text-sm">
+            <div className="bg-semantic-danger-subtle border border-semantic-danger text-semantic-danger px-4 py-3 rounded-lg mb-6 text-sm">
               {error}
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-[#394C9A] mb-2">Full name</label>
+              <label className="block text-sm font-medium text-brand-indigo-600 mb-2">Full name</label>
               <div className="relative">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#5B6BA8]" />
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-text-secondary" />
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full pl-10 pr-4 py-3 border border-[#D4DAF0] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#394C9A]"
+                  className="w-full pl-10 pr-4 py-3 border border-border-default rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-indigo-600"
                   placeholder="John Doe"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#394C9A] mb-2">Email address</label>
+              <label className="block text-sm font-medium text-brand-indigo-600 mb-2">Email address</label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#5B6BA8]" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-text-secondary" />
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full pl-10 pr-4 py-3 border border-[#D4DAF0] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#394C9A]"
+                  className="w-full pl-10 pr-4 py-3 border border-border-default rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-indigo-600"
                   placeholder="you@example.com"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#394C9A] mb-2">Password</label>
+              <label className="block text-sm font-medium text-brand-indigo-600 mb-2">Password</label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#5B6BA8]" />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-text-secondary" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
                   required
-                  className="w-full pl-10 pr-4 py-3 border border-[#D4DAF0] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#394C9A]"
+                  className="w-full pl-10 pr-4 py-3 border border-border-default rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-indigo-600"
                   placeholder="••••••••"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#394C9A] mb-2">Confirm password</label>
+              <label className="block text-sm font-medium text-brand-indigo-600 mb-2">Confirm password</label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#5B6BA8]" />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-text-secondary" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   required
-                  className="w-full pl-10 pr-4 py-3 border border-[#D4DAF0] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#394C9A]"
+                  className="w-full pl-10 pr-4 py-3 border border-border-default rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-indigo-600"
                   placeholder="••••••••"
                 />
               </div>
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="text-sm text-[#394C9A] hover:text-[#5B6BA8] mt-2"
+                className="text-sm text-text-brand hover:text-text-secondary mt-2"
               >
                 {showPassword ? 'Hide' : 'Show'} passwords
               </button>
@@ -138,17 +138,17 @@ export default function SignupPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-[#394C9A] to-[#5B6BA8] hover:shadow-lg disabled:opacity-50 text-white font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2 mt-6"
+              className="w-full bg-gradient-to-r from-brand-indigo-700 to-brand-indigo-600 hover:shadow-lg disabled:opacity-50 text-white font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2 mt-6"
             >
               {loading ? 'Creating account...' : 'Create account'}
               {!loading && <ArrowRight className="w-5 h-5" />}
             </button>
           </form>
 
-          <div className="mt-6 pt-6 border-t border-[#D4DAF0]">
-            <p className="text-center text-[#5B6BA8] text-sm">
+          <div className="mt-6 pt-6 border-t border-border-subtle">
+            <p className="text-center text-text-secondary text-sm">
               Already have an account?{' '}
-              <Link href="/auth/login" className="text-[#394C9A] hover:text-[#5B6BA8] font-semibold">
+              <Link href="/auth/login" className="text-text-brand hover:text-text-secondary font-semibold">
                 Sign in
               </Link>
             </p>

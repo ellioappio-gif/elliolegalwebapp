@@ -13,7 +13,7 @@ export default function FeaturesPage() {
         {/* Hero */}
         <section className="bg-gradient-to-br from-white via-[#F5F7FC] to-white py-24">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="font-['Quicksand'] text-5xl md:text-6xl font-bold text-[#394C9A] mb-6">
+            <h1 className="font-sans text-5xl md:text-6xl font-bold text-brand-indigo-700 mb-6">
               Everything You Need<br />for Legal Clarity
             </h1>
             <p className="text-xl text-[#5B6BA8] leading-relaxed">
@@ -26,7 +26,7 @@ export default function FeaturesPage() {
         {/* Why Choose ellio */}
         <section className="py-20 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-['Quicksand'] text-4xl font-bold text-[#394C9A] mb-12 text-center">
+            <h2 className="font-sans text-4xl font-bold text-brand-indigo-700 mb-12 text-center">
               Why Choose ellio?
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -58,7 +58,7 @@ export default function FeaturesPage() {
                     <div className="w-16 h-16 bg-gradient-to-br from-[#394C9A] to-[#5B6BA8] rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <Icon className="w-8 h-8 text-white" />
                     </div>
-                    <h3 className="font-['Quicksand'] text-xl font-bold text-[#394C9A] mb-2">{item.title}</h3>
+                    <h3 className="font-sans text-xl font-bold text-[#394C9A] mb-2">{item.title}</h3>
                     <p className="text-[#5B6BA8]">{item.description}</p>
                   </div>
                 )
@@ -79,7 +79,7 @@ export default function FeaturesPage() {
         {/* CTA */}
         <section className="py-20 bg-gradient-to-br from-[#394C9A] to-[#5B6BA8]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="font-['Quicksand'] text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="font-sans text-4xl md:text-5xl font-bold text-white mb-6">
               Ready to Experience<br />Legal Clarity?
             </h2>
             <p className="text-xl text-white/90 mb-8">

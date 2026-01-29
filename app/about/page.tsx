@@ -10,7 +10,7 @@ export default function AboutPage() {
         {/* Hero */}
         <section className="bg-gradient-to-br from-[#394C9A] to-[#5B6BA8] text-white py-24">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 className="font-['Quicksand'] text-5xl md:text-6xl font-bold mb-6">
+            <h1 className="font-sans text-5xl md:text-6xl font-bold mb-6">
               Making Legal Help<br />Accessible to Everyone
             </h1>
             <p className="text-xl text-white/90 leading-relaxed">
@@ -23,7 +23,7 @@ export default function AboutPage() {
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="font-['Quicksand'] text-4xl font-bold text-[#394C9A] mb-6">Our Mission</h2>
+              <h2 className="font-sans text-4xl font-bold text-brand-indigo-700 mb-6">Our Mission</h2>
               <p className="text-xl text-[#5B6BA8] leading-relaxed">
                 To democratize legal knowledge by combining cutting-edge AI technology with human expertise, 
                 empowering everyone to understand their rights, navigate legal situations, and access affordable legal help.
@@ -66,9 +66,9 @@ export default function AboutPage() {
               ].map((value, i) => {
                 const Icon = value.icon
                 return (
-                  <div key={i} className="bg-white border-2 border-[#D4DAF0] rounded-3xl p-8 hover:border-[#394C9A] hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
-                    <Icon className="w-12 h-12 text-[#394C9A] mb-4" />
-                    <h3 className="font-['Quicksand'] text-2xl font-bold text-[#394C9A] mb-4">{value.title}</h3>
+                  <div key={i} className="bg-white border-2 border-border-subtle rounded-3xl p-8 hover:border-brand-indigo-700 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
+                    <Icon className="w-12 h-12 text-brand-indigo-700 mb-4" />
+                    <h3 className="font-sans text-2xl font-bold text-brand-indigo-700 mb-4">{value.title}</h3>
                     <p className="text-[#5B6BA8] leading-relaxed">{value.description}</p>
                   </div>
                 )
@@ -80,7 +80,7 @@ export default function AboutPage() {
         {/* Story */}
         <section className="py-20 bg-[#F5F7FC]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-['Quicksand'] text-4xl font-bold text-[#394C9A] mb-8 text-center">Our Story</h2>
+            <h2 className="font-sans text-4xl font-bold text-brand-indigo-700 mb-8 text-center">Our Story</h2>
             <div className="space-y-6 text-lg text-[#5B6BA8] leading-relaxed">
               <p>
                 ellio legal was born from a simple frustration: legal help is too expensive, too complicated, 
@@ -101,7 +101,7 @@ export default function AboutPage() {
                 reviews, and understanding your rights, ellio provides immediate help. And when you need a 
                 professional attorney, we connect you with verified lawyers in your area.
               </p>
-              <p className="font-semibold text-[#394C9A]">
+              <p className="font-semibold text-brand-indigo-700">
                 We're not lawyers. We're just here to help — 24/7, in plain English, at a price that makes sense.
               </p>
             </div>
@@ -111,7 +111,7 @@ export default function AboutPage() {
         {/* Stats */}
         <section className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-['Quicksand'] text-4xl font-bold text-[#394C9A] mb-12 text-center">By the Numbers</h2>
+            <h2 className="font-sans text-4xl font-bold text-brand-indigo-700 mb-12 text-center">By the Numbers</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
                 { number: '50,000+', label: 'Happy Users' },
@@ -120,7 +120,7 @@ export default function AboutPage() {
                 { number: '4.9/5', label: 'Average Rating' },
               ].map((stat, i) => (
                 <div key={i} className="text-center">
-                  <div className="font-['Quicksand'] text-5xl font-bold text-[#394C9A] mb-2">{stat.number}</div>
+                  <div className="font-sans text-5xl font-bold text-brand-indigo-700 mb-2">{stat.number}</div>
                   <div className="text-[#5B6BA8]">{stat.label}</div>
                 </div>
               ))}
@@ -131,7 +131,7 @@ export default function AboutPage() {
         {/* CTA */}
         <section className="py-20 bg-gradient-to-br from-[#394C9A] to-[#5B6BA8]">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="font-['Quicksand'] text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="font-sans text-4xl md:text-5xl font-bold text-white mb-6">
               Join Thousands Who've<br />Simplified Their Legal Life
             </h2>
             <p className="text-xl text-white/90 mb-8">
@@ -139,7 +139,7 @@ export default function AboutPage() {
             </p>
             <a
               href="/auth/signup"
-              className="inline-flex items-center gap-2 bg-white text-[#394C9A] px-10 py-5 rounded-xl font-bold text-lg hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
+              className="inline-flex items-center gap-2 bg-white text-brand-indigo-700 px-10 py-5 rounded-xl font-bold text-lg hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
             >
               Get Started Free
             </a>

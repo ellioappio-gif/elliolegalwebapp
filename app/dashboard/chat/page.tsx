@@ -262,7 +262,7 @@ function ChatContent() {
         </div>
 
         {/* Mode Tabs */}
-        <div className="flex bg-gray-100 rounded-lg p-1 mb-4">
+        <div className="flex bg-neutral-100 rounded-lg p-1 mb-4">
           <button
             onClick={() => setChatMode('ai')}
             className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md transition-colors ${
@@ -405,7 +405,7 @@ function ChatContent() {
                       <button
                         key={lawyer.id}
                         onClick={() => setSelectedLawyer(lawyer)}
-                        className={`w-full p-4 flex items-center gap-3 hover:bg-gray-50 transition-colors ${
+                        className={`w-full p-4 flex items-center gap-3 hover:bg-neutral-50 transition-colors ${
                           selectedLawyer?.id === lawyer.id ? 'bg-[#4f46e5]/5 border-l-2 border-[#4f46e5]' : ''
                         }`}
                       >
@@ -513,7 +513,7 @@ function ChatContent() {
                             }
                           }}
                           disabled={!input.trim()}
-                          className="bg-[#4f46e5] hover:bg-[#4338ca] disabled:bg-gray-200 disabled:text-gray-400 text-white px-4 py-2 rounded-lg transition-colors"
+                          className="bg-[#4f46e5] hover:bg-[#4338ca] disabled:bg-neutral-200 disabled:text-neutral-400 text-white px-4 py-2 rounded-lg transition-colors"
                         >
                           <Send className="w-5 h-5" />
                         </button>

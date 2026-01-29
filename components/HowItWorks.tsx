@@ -33,11 +33,11 @@ export default function HowItWorks() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <div className="inline-block mb-4">
-            <span className="bg-[#394C9A]/10 text-[#394C9A] px-4 py-2 rounded-full text-sm font-semibold">
+            <span className="bg-brand-indigo-100 text-brand-indigo-700 px-4 py-2 rounded-full text-sm font-semibold">
               Simple Process
             </span>
           </div>
-          <h2 className="font-['Quicksand'] text-5xl md:text-6xl font-bold text-[#394C9A] mb-6">
+          <h2 className="font-sans text-5xl md:text-6xl font-bold text-brand-indigo-700 mb-6">
             How ellio Works
           </h2>
           <p className="text-xl text-[#5B6BA8] max-w-3xl mx-auto">
@@ -54,11 +54,11 @@ export default function HowItWorks() {
               const Icon = step.icon
               return (
                 <div key={index} className="relative">
-                  <div className="bg-white p-8 rounded-3xl border-2 border-[#D4DAF0] hover:border-[#394C9A] hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
+                  <div className="bg-white p-8 rounded-3xl border-2 border-border-subtle hover:border-brand-indigo-700 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300">
                     {/* Step Number */}
                     <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
                       <div className="w-16 h-16 bg-gradient-to-r from-[#394C9A] to-[#5B6BA8] rounded-2xl flex items-center justify-center shadow-lg">
-                        <span className="font-['Quicksand'] text-2xl font-bold text-white">
+                        <span className="font-sans text-2xl font-bold text-white">
                           {step.number}
                         </span>
                       </div>
@@ -67,12 +67,12 @@ export default function HowItWorks() {
                     {/* Icon */}
                     <div className="mt-8 mb-6 flex justify-center">
                       <div className="w-20 h-20 bg-[#394C9A]/10 rounded-2xl flex items-center justify-center">
-                        <Icon className="w-10 h-10 text-[#394C9A]" />
+                        <Icon className="w-10 h-10 text-brand-indigo-700" />
                       </div>
                     </div>
 
                     {/* Content */}
-                    <h3 className="font-['Quicksand'] text-2xl font-bold text-[#394C9A] mb-4 text-center">
+                    <h3 className="font-sans text-2xl font-bold text-brand-indigo-700 mb-4 text-center">
                       {step.title}
                     </h3>
                     <p className="text-[#5B6BA8] text-center leading-relaxed">

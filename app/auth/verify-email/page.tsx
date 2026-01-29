@@ -19,7 +19,7 @@ export default function VerifyEmailPage() {
         {!isVerified ? (
           <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-lg">
             <div className="flex justify-center mb-8">
-              <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center">
+              <div className="w-16 h-16 rounded-full bg-semantic-info-subtle flex items-center justify-center">
                 <Mail className="w-8 h-8 text-blue-600" />
               </div>
             </div>
@@ -29,7 +29,7 @@ export default function VerifyEmailPage() {
               We've sent a verification link to <span className="font-semibold">john@example.com</span>
             </p>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
+            <div className="bg-semantic-info-subtle border border-semantic-info rounded-lg p-6 mb-8">
               <p className="text-sm text-gray-700 mb-4">
                 Click the link in your email to verify your account and get started with ellio legal.
               </p>
@@ -39,14 +39,14 @@ export default function VerifyEmailPage() {
             </div>
 
             {resent && (
-              <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg mb-6 text-sm">
+              <div className="bg-semantic-success-subtle border border-semantic-success text-semantic-success px-4 py-3 rounded-lg mb-6 text-sm">
                 ✓ Verification email sent!
               </div>
             )}
 
             <button
               onClick={() => setIsVerified(true)}
-              className="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 mb-4"
+              className="w-full px-6 py-3 bg-brand-indigo-600 hover:bg-brand-indigo-700 text-white rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 mb-4"
             >
               <Check className="w-5 h-5" />
               I've Verified My Email
@@ -54,7 +54,7 @@ export default function VerifyEmailPage() {
 
             <button
               onClick={handleResend}
-              className="w-full px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-lg font-semibold transition-colors"
+              className="w-full px-6 py-3 bg-surface-secondary hover:bg-neutral-150 text-text-primary rounded-lg font-semibold transition-colors"
             >
               Resend Verification Email
             </button>
@@ -69,7 +69,7 @@ export default function VerifyEmailPage() {
         ) : (
           <div className="bg-white rounded-2xl border border-gray-200 p-8 shadow-lg text-center">
             <div className="flex justify-center mb-8">
-              <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
+              <div className="w-16 h-16 rounded-full bg-semantic-success-subtle flex items-center justify-center">
                 <Check className="w-8 h-8 text-green-600" />
               </div>
             </div>
@@ -81,7 +81,7 @@ export default function VerifyEmailPage() {
 
             <Link
               href="/dashboard"
-              className="inline-flex px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors items-center gap-2"
+              className="inline-flex px-8 py-3 bg-brand-indigo-600 hover:bg-brand-indigo-700 text-white rounded-lg font-semibold transition-colors items-center gap-2"
             >
               Go to Dashboard
               <ArrowRight className="w-5 h-5" />
