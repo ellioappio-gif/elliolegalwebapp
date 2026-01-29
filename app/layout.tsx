@@ -1,7 +1,6 @@
 'use client'
 
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { AuthProvider } from '@/app/auth/AuthContext';
@@ -13,8 +12,6 @@ import { loadAdSense } from '@/src/utils/adsense';
 import { useEffect, useState } from 'react';
 import './globals.css';
 import '@/src/styles/ads.css';
-
-const inter = Inter({ subsets: ['latin'] });
 
 // Metadata can't be used in client components, moving to a separate file if needed
 
@@ -72,7 +69,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className={inter.className}>
+      <body className="font-body text-text-primary bg-surface-primary">
         <AuthProvider>
           <SubscriptionProvider>
             <AdSubscriptionProvider>
