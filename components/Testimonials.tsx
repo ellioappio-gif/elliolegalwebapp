@@ -7,42 +7,48 @@ export default function Testimonials() {
       role: 'Small Business Owner',
       content: 'ellio reviewed my commercial lease and caught clauses that would have cost me thousands. The AI explained everything in plain English. Worth every penny!',
       rating: 5,
-      avatar: '👩‍💼',
+      initials: 'SJ',
+      color: '#394C9A',
     },
     {
       name: 'Michael Chen',
       role: 'Software Engineer',
       content: 'I was hesitant about an employment contract. ellio analyzed it in minutes and helped me negotiate better terms. Saved me $15K in lawyer fees.',
       rating: 5,
-      avatar: '👨‍💻',
+      initials: 'MC',
+      color: '#5B6BA8',
     },
     {
       name: 'Emily Rodriguez',
       role: 'Renter',
       content: 'My landlord was withholding my security deposit. ellio helped me understand my rights and draft a demand letter. Got my full deposit back!',
       rating: 5,
-      avatar: '👩',
+      initials: 'ER',
+      color: '#10B981',
     },
     {
       name: 'David Park',
       role: 'Freelance Designer',
       content: 'The contract templates and AI reviews have been invaluable for my freelance business. I feel confident in every client agreement now.',
       rating: 5,
-      avatar: '👨‍🎨',
+      initials: 'DP',
+      color: '#A8D4E6',
     },
     {
       name: 'Jessica Williams',
       role: 'First-Time Home Buyer',
       content: 'Buying a home is scary! ellio walked me through all the documents and explained what everything meant. Highly recommend!',
       rating: 5,
-      avatar: '👩‍🦰',
+      initials: 'JW',
+      color: '#F59E0B',
     },
     {
       name: 'Robert Martinez',
       role: 'Restaurant Owner',
       content: 'From vendor contracts to employee agreements, ellio has become essential for my business. The 24/7 AI assistant is a game-changer.',
       rating: 5,
-      avatar: '👨‍🍳',
+      initials: 'RM',
+      color: '#394C9A',
     },
   ]
 
@@ -92,8 +98,11 @@ export default function Testimonials() {
 
               {/* Author */}
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center text-2xl">
-                  {testimonial.avatar}
+                <div 
+                  className="w-12 h-12 rounded-full flex items-center justify-center font-bold text-white shadow-md"
+                  style={{ backgroundColor: testimonial.color }}
+                >
+                  {testimonial.initials}
                 </div>
                 <div>
                   <div className="font-['Quicksand'] font-bold text-white">

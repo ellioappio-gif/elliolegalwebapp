@@ -15,14 +15,14 @@ export default function Hero() {
 
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
         {/* Trust Badge */}
-        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#394C9A]/10 to-[#5B6BA8]/10 border border-[#394C9A]/20 text-[#394C9A] px-6 py-2.5 rounded-full font-semibold text-sm mb-8 backdrop-blur-sm">
+        <div className="inline-flex items-center gap-3 bg-gradient-to-r from-[#394C9A]/10 to-[#5B6BA8]/10 border border-[#394C9A]/20 text-[#394C9A] px-6 py-2.5 rounded-full font-semibold text-sm mb-8 backdrop-blur-sm">
           <Shield className="w-4 h-4" />
           <span>Trusted by 50,000+ Users</span>
-          <span className="flex gap-0.5">
+          <div className="flex gap-0.5">
             {[...Array(5)].map((_, i) => (
               <Star key={i} className="w-3 h-3 fill-[#F59E0B] text-[#F59E0B]" />
             ))}
-          </span>
+          </div>
         </div>
         
         {/* Main Heading */}
