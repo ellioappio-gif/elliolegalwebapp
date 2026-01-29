@@ -2,19 +2,35 @@
 
 import { ProtectedRoute } from '../../auth/ProtectedRoute'
 import { useState, useRef, useEffect, useCallback } from 'react'
-import { Send, AlertCircle, Zap, Sparkles } from 'lucide-react'
+import { Send, AlertCircle, Zap, Sparkles, Bot, Users, Lock, Search, Circle } from 'lucide-react'
 import type { ChatMessage } from '@/lib/ai/types'
 import DashboardLayout from '@/components/dashboard/DashboardLayout'
+import { FeatureGate, useFeature } from '@/components/FeatureGate'
+import Link from 'next/link'
+
+type ChatMode = 'ai' | 'lawyer'
 
 interface Message {
   id: number
-  type: 'user' | 'bot'
+  type: 'user' | 'bot' | 'lawyer'
   text: string
   timestamp: Date
   streaming?: boolean
+  senderName?: string
+  senderAvatar?: string
+}
+
+interface Lawyer {
+  id: string
+  name: string
+  specialization: string
+  avatar: string
+  online: boolean
+  lastSeen?: string
 }
 
 function ChatContent() {
+  const [chatMode, setChatMode] = useState<ChatMode>('ai')
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
@@ -23,12 +39,35 @@ function ChatContent() {
       timestamp: new Date(Date.now() - 300000)
     }
   ])
+  const [lawyerMessages, setLawyerMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [useStreaming, setUseStreaming] = useState(true)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const abortControllerRef = useRef<AbortController | null>(null)
+  
+  // Connected lawyers for P2P chat
+  const [connectedLawyers] = useState<Lawyer[]>([
+    {
+      id: '1',
+      name: 'Sarah Mitchell',
+      specialization: 'Family Law',
+      avatar: 'SM',
+      online: true,
+    },
+    {
+      id: '2',
+      name: 'James Wilson',
+      specialization: 'Corporate Law',
+      avatar: 'JW',
+      online: false,
+      lastSeen: '2 hours ago',
+    },
+  ])
+  const [selectedLawyer, setSelectedLawyer] = useState<Lawyer | null>(null)
+  
+  const hasLawyerChat = useFeature('lawyerChat')
 
   // Auto-scroll to bottom when new messages arrive
   useEffect(() => {
@@ -217,12 +256,41 @@ function ChatContent() {
             <div className="w-10 h-10 rounded-xl bg-[#4f46e5]/10 flex items-center justify-center">
               <Sparkles className="w-5 h-5 text-[#4f46e5]" />
             </div>
-            <h1 className="text-2xl font-semibold text-[#0f172a]">Legal assistant</h1>
+            <h1 className="text-2xl font-semibold text-[#0f172a]">Chat</h1>
           </div>
-          <p className="text-[#64748b]">Have a conversation about legal matters. Take your time.</p>
+          <p className="text-[#64748b]">Get AI assistance or connect with legal professionals.</p>
         </div>
 
-        <div className="bg-white rounded-xl border border-[#e2e8f0] flex flex-col h-[calc(100vh-280px)] min-h-[500px]">
+        {/* Mode Tabs */}
+        <div className="flex bg-gray-100 rounded-lg p-1 mb-4">
+          <button
+            onClick={() => setChatMode('ai')}
+            className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md transition-colors ${
+              chatMode === 'ai' 
+                ? 'bg-white shadow text-[#4f46e5]' 
+                : 'text-gray-600 hover:text-gray-900'
+            }`}
+          >
+            <Bot className="w-4 h-4" />
+            AI Assistant
+          </button>
+          <button
+            onClick={() => setChatMode('lawyer')}
+            className={`flex-1 flex items-center justify-center gap-2 py-2 px-4 rounded-md transition-colors ${
+              chatMode === 'lawyer' 
+                ? 'bg-white shadow text-[#4f46e5]' 
+                : 'text-gray-600 hover:text-gray-900'
+            }`}
+          >
+            <Users className="w-4 h-4" />
+            Talk to Lawyer
+            {!hasLawyerChat && <Lock className="w-3 h-3 text-gray-400" />}
+          </button>
+        </div>
+
+        {/* AI Chat Mode */}
+        {chatMode === 'ai' && (
+        <div className="bg-white rounded-xl border border-[#e2e8f0] flex flex-col h-[calc(100vh-340px)] min-h-[450px]">
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-6 space-y-6">
             {messages.map(msg => (
@@ -305,6 +373,166 @@ function ChatContent() {
             </div>
           </div>
         </div>
+        )}
+
+        {/* Lawyer Chat Mode */}
+        {chatMode === 'lawyer' && (
+          <FeatureGate feature="lawyerChat">
+            <div className="bg-white rounded-xl border border-[#e2e8f0] flex h-[calc(100vh-340px)] min-h-[450px]">
+              {/* Lawyer List Sidebar */}
+              <div className="w-72 border-r border-gray-200 flex flex-col">
+                <div className="p-4 border-b border-gray-200">
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                    <input
+                      type="text"
+                      placeholder="Search lawyers..."
+                      className="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4f46e5]"
+                    />
+                  </div>
+                </div>
+                <div className="flex-1 overflow-y-auto">
+                  {connectedLawyers.length === 0 ? (
+                    <div className="p-4 text-center text-gray-500 text-sm">
+                      <Users className="w-8 h-8 mx-auto mb-2 text-gray-300" />
+                      No connected lawyers yet.
+                      <Link href="/dashboard/lawyers" className="block mt-2 text-[#4f46e5] hover:underline">
+                        Find a lawyer
+                      </Link>
+                    </div>
+                  ) : (
+                    connectedLawyers.map(lawyer => (
+                      <button
+                        key={lawyer.id}
+                        onClick={() => setSelectedLawyer(lawyer)}
+                        className={`w-full p-4 flex items-center gap-3 hover:bg-gray-50 transition-colors ${
+                          selectedLawyer?.id === lawyer.id ? 'bg-[#4f46e5]/5 border-l-2 border-[#4f46e5]' : ''
+                        }`}
+                      >
+                        <div className="relative">
+                          <div className="w-10 h-10 rounded-full bg-[#4f46e5]/10 flex items-center justify-center text-[#4f46e5] font-medium">
+                            {lawyer.avatar}
+                          </div>
+                          {lawyer.online && (
+                            <Circle className="absolute bottom-0 right-0 w-3 h-3 fill-green-500 text-green-500" />
+                          )}
+                        </div>
+                        <div className="flex-1 text-left">
+                          <p className="font-medium text-gray-900 text-sm">{lawyer.name}</p>
+                          <p className="text-xs text-gray-500">{lawyer.specialization}</p>
+                          {!lawyer.online && lawyer.lastSeen && (
+                            <p className="text-xs text-gray-400">{lawyer.lastSeen}</p>
+                          )}
+                        </div>
+                      </button>
+                    ))
+                  )}
+                </div>
+              </div>
+
+              {/* Chat Area */}
+              <div className="flex-1 flex flex-col">
+                {selectedLawyer ? (
+                  <>
+                    {/* Chat Header */}
+                    <div className="p-4 border-b border-gray-200 flex items-center gap-3">
+                      <div className="relative">
+                        <div className="w-10 h-10 rounded-full bg-[#4f46e5]/10 flex items-center justify-center text-[#4f46e5] font-medium">
+                          {selectedLawyer.avatar}
+                        </div>
+                        {selectedLawyer.online && (
+                          <Circle className="absolute bottom-0 right-0 w-3 h-3 fill-green-500 text-green-500" />
+                        )}
+                      </div>
+                      <div>
+                        <p className="font-medium text-gray-900">{selectedLawyer.name}</p>
+                        <p className="text-sm text-gray-500">
+                          {selectedLawyer.online ? 'Online' : `Last seen ${selectedLawyer.lastSeen}`}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Messages */}
+                    <div className="flex-1 overflow-y-auto p-6 space-y-4">
+                      {lawyerMessages.length === 0 ? (
+                        <div className="h-full flex items-center justify-center text-gray-500 text-sm">
+                          <div className="text-center">
+                            <Users className="w-12 h-12 mx-auto mb-3 text-gray-300" />
+                            <p>Start a conversation with {selectedLawyer.name}</p>
+                          </div>
+                        </div>
+                      ) : (
+                        lawyerMessages.map(msg => (
+                          <div key={msg.id} className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}>
+                            <div className={`max-w-xs lg:max-w-md rounded-lg p-3 ${
+                              msg.type === 'user'
+                                ? 'bg-[#4f46e5] text-white'
+                                : 'bg-[#f1f5f9] text-gray-900'
+                            }`}>
+                              <p className="text-sm">{msg.text}</p>
+                              <p className={`text-xs mt-1 ${msg.type === 'user' ? 'text-indigo-200' : 'text-gray-500'}`}>
+                                {msg.timestamp.toLocaleTimeString()}
+                              </p>
+                            </div>
+                          </div>
+                        ))
+                      )}
+                    </div>
+
+                    {/* Input */}
+                    <div className="p-4 border-t border-gray-200">
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          value={input}
+                          onChange={(e) => setInput(e.target.value)}
+                          onKeyDown={(e) => {
+                            if (e.key === 'Enter' && !e.shiftKey && input.trim()) {
+                              setLawyerMessages(prev => [...prev, {
+                                id: Date.now(),
+                                type: 'user',
+                                text: input.trim(),
+                                timestamp: new Date(),
+                              }])
+                              setInput('')
+                            }
+                          }}
+                          placeholder={`Message ${selectedLawyer.name}...`}
+                          className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4f46e5] text-gray-900 placeholder-gray-400"
+                        />
+                        <button
+                          onClick={() => {
+                            if (input.trim()) {
+                              setLawyerMessages(prev => [...prev, {
+                                id: Date.now(),
+                                type: 'user',
+                                text: input.trim(),
+                                timestamp: new Date(),
+                              }])
+                              setInput('')
+                            }
+                          }}
+                          disabled={!input.trim()}
+                          className="bg-[#4f46e5] hover:bg-[#4338ca] disabled:bg-gray-200 disabled:text-gray-400 text-white px-4 py-2 rounded-lg transition-colors"
+                        >
+                          <Send className="w-5 h-5" />
+                        </button>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <div className="flex-1 flex items-center justify-center text-gray-500">
+                    <div className="text-center">
+                      <Users className="w-16 h-16 mx-auto mb-4 text-gray-300" />
+                      <p className="text-lg font-medium text-gray-900 mb-1">Select a lawyer</p>
+                      <p className="text-sm">Choose a lawyer from the list to start chatting</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </FeatureGate>
+        )}
       </div>
     </DashboardLayout>
   )

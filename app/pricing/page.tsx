@@ -1,131 +1,169 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, MessageCircle, Shield, Award } from 'lucide-react'
+import { ArrowRight, Check, Sparkles, Crown, Building2 } from 'lucide-react'
+import { TIERS, TIER_ORDER, TierType } from '@/lib/constants/tiers'
+import { useState } from 'react'
+import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 
 export default function PricingPage() {
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly')
+
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-[#F5F7FC]">
+      <Navigation />
+      
+      <div className="max-w-7xl mx-auto py-16 px-4">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Simple, Transparent Pricing</h1>
-          <p className="text-xl text-gray-600">Choose the plan that works for you</p>
+        <div className="text-center mb-12">
+          <h1 className="font-['Quicksand'] text-4xl md:text-5xl font-semibold text-[#394C9A] mb-4">Simple, Transparent Pricing</h1>
+          <div className="w-20 h-1 bg-gradient-to-r from-[#394C9A] to-[#A8D4E6] mx-auto rounded-full mb-4" />
+          <p className="text-lg text-[#5B6BA8] mb-8">Choose the plan that fits your legal needs</p>
+          
+          {/* Billing Toggle */}
+          <div className="inline-flex items-center gap-4 bg-white rounded-full p-1 border border-[#D4DAF0]">
+            <button
+              onClick={() => setBillingCycle('monthly')}
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+                billingCycle === 'monthly' 
+                  ? 'bg-gradient-to-r from-[#394C9A] to-[#5B6BA8] text-white' 
+                  : 'text-[#5B6BA8] hover:text-[#394C9A]'
+              }`}
+            >
+              Monthly
+            </button>
+            <button
+              onClick={() => setBillingCycle('annual')}
+              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
+                billingCycle === 'annual' 
+                  ? 'bg-gradient-to-r from-[#394C9A] to-[#5B6BA8] text-white' 
+                  : 'text-[#5B6BA8] hover:text-[#394C9A]'
+              }`}
+            >
+              Annual <span className="text-[#10B981] ml-1">Save 17%</span>
+            </button>
+          </div>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {[
-            {
-              name: 'Free',
-              price: '$0',
-              period: 'Forever',
-              description: 'Ad-supported access',
-              features: [
-                'AI legal assistant',
-                '2,048 token responses',
-                '10 requests per minute',
-                'Basic document analysis',
-                'Ad-supported experience'
-              ],
-              cta: 'Start Free',
-              highlighted: false
-            },
-            {
-              name: 'Basic',
-              price: '$9.99',
-              period: '/month',
-              description: 'For occasional users',
-              features: [
-                'Everything in Free +',
-                '4,096 token responses',
-                '20 requests per minute',
-                'No ads',
-                'Email support'
-              ],
-              cta: 'Get Basic',
-              highlighted: false
-            },
-            {
-              name: 'Premium',
-              price: '$19.99',
-              period: '/month',
-              description: 'Best for regular users',
-              features: [
-                'Everything in Basic +',
-                '6,144 token responses',
-                '50 requests per minute',
-                'Advanced document analysis',
-                'Priority support'
-              ],
-              cta: 'Start Premium',
-              highlighted: true
-            },
-            {
-              name: 'Enterprise',
-              price: 'Custom',
-              period: 'pricing',
-              description: 'For organizations',
-              features: [
-                'Everything in Premium +',
-                '8,192 token responses',
-                '100 requests per minute',
-                'Dedicated support',
-                'Custom integrations'
-              ],
-              cta: 'Contact Sales',
-              highlighted: false
-            }
-          ].map((plan, i) => (
-            <div key={i} className={`rounded-2xl p-8 border-2 transition-all hover:shadow-lg ${
-              plan.highlighted 
-                ? 'bg-blue-600 text-white border-blue-600 transform scale-105' 
-                : 'bg-white text-gray-900 border-gray-200'
-            }`}>
-              <h3 className={`text-2xl font-bold mb-2 ${plan.highlighted ? 'text-white' : ''}`}>
-                {plan.name}
-              </h3>
-              <p className={`text-sm mb-6 ${plan.highlighted ? 'text-blue-100' : 'text-gray-600'}`}>
-                {plan.description}
-              </p>
-              
-              <div className="mb-8">
-                <span className="text-4xl font-bold">{plan.price}</span>
-                <span className={`text-sm ${plan.highlighted ? 'text-blue-100' : 'text-gray-600'}`}>
-                  {plan.period}
-                </span>
-              </div>
-
-              <ul className="space-y-4 mb-8">
-                {plan.features.map((feature, j) => (
-                  <li key={j} className="flex items-start gap-3">
-                    <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-1 ${
-                      plan.highlighted ? 'bg-blue-400' : 'bg-blue-100'
-                    }`}>
-                      <span className={`w-2 h-2 rounded-full ${plan.highlighted ? 'bg-white' : 'bg-blue-600'}`}></span>
-                    </div>
-                    <span className={`text-sm ${plan.highlighted ? 'text-blue-50' : 'text-gray-700'}`}>
-                      {feature}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {TIER_ORDER.map((tierKey) => {
+            const tier = TIERS[tierKey]
+            const price = billingCycle === 'monthly' ? tier.pricing.monthly : tier.pricing.annual / 12
+            const isPopular = tier.popular
+            
+            return (
+              <div 
+                key={tier.id} 
+                className={`rounded-2xl p-6 border-2 transition-all hover:shadow-xl hover:-translate-y-1 relative ${
+                  isPopular 
+                    ? 'bg-gradient-to-b from-white to-[#F5F7FC] border-[#394C9A] border-3 transform scale-105 z-10 shadow-lg' 
+                    : 'bg-white text-[#394C9A] border-[#D4DAF0]'
+                }`}
+              >
+                {tier.badge && (
+                  <div className={`absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-xs font-bold ${
+                    isPopular ? 'bg-gradient-to-r from-[#394C9A] to-[#5B6BA8] text-white' : 'bg-[#E8ECF8] text-[#394C9A]'
+                  }`}>
+                    {tier.badge}
+                  </div>
+                )}
+                
+                <h3 className="font-['Quicksand'] text-xl font-bold mb-2 mt-2 text-[#394C9A]">
+                  {tier.name}
+                </h3>
+                <p className="text-sm mb-6 text-[#5B6BA8]">
+                  {tier.description}
+                </p>
+                
+                <div className="mb-6">
+                  <span className="font-['Quicksand'] text-4xl font-bold text-[#394C9A]">
+                    {tier.pricing.monthly === 0 ? 'Free' : `$${price.toFixed(2)}`}
+                  </span>
+                  {tier.pricing.monthly > 0 && (
+                    <span className="text-sm text-[#5B6BA8]">
+                      /month
                     </span>
-                  </li>
-                ))}
-              </ul>
+                  )}
+                  {billingCycle === 'annual' && tier.pricing.annualSavings > 0 && (
+                    <p className="text-xs mt-1 text-[#10B981]">
+                      Save ${tier.pricing.annualSavings}/year
+                    </p>
+                  )}
+                </div>
 
-              <button className={`w-full py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-colors ${
-                plan.highlighted
-                  ? 'bg-white text-blue-600 hover:bg-blue-50'
-                  : 'bg-blue-600 text-white hover:bg-blue-700'
-              }`}>
-                {plan.cta}
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          ))}
+                <ul className="space-y-3 mb-6 text-sm">
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#10B981]" />
+                    <span className="text-[#5B6BA8]">{tier.limits.cases === 'unlimited' ? 'Unlimited' : tier.limits.cases} case{tier.limits.cases !== 1 ? 's' : ''}</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#10B981]" />
+                    <span className="text-[#5B6BA8]">{tier.limits.documentsPerMonth === 'unlimited' ? 'Unlimited' : tier.limits.documentsPerMonth} docs/month</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#10B981]" />
+                    <span className="text-[#5B6BA8]">{tier.limits.chatMessagesPerMonth === 'unlimited' ? 'Unlimited' : tier.limits.chatMessagesPerMonth} AI chats/month</span>
+                  </li>
+                  {tier.features.adFree && (
+                    <li className="flex items-start gap-2">
+                      <Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#10B981]" />
+                      <span className="text-[#5B6BA8]">Ad-free experience</span>
+                    </li>
+                  )}
+                  {tier.features.documentOcr && (
+                    <li className="flex items-start gap-2">
+                      <Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#10B981]" />
+                      <span className="text-[#5B6BA8]">Document OCR</span>
+                    </li>
+                  )}
+                  {tier.features.aiAnalysis && (
+                    <li className="flex items-start gap-2">
+                      <Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#10B981]" />
+                      <span className="text-[#5B6BA8]">AI document analysis</span>
+                    </li>
+                  )}
+                  {tier.features.videoConsultations && (
+                    <li className="flex items-start gap-2">
+                      <Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#10B981]" />
+                      <span className="text-[#5B6BA8]">{tier.limits.videoConsultations === 'unlimited' ? 'Unlimited' : tier.limits.videoConsultations} video calls</span>
+                    </li>
+                  )}
+                  {tier.features.dedicatedLawyer && (
+                    <li className="flex items-start gap-2">
+                      <Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#10B981]" />
+                      <span className="text-[#5B6BA8]">Dedicated lawyer</span>
+                    </li>
+                  )}
+                  {tier.features.support24x7 && (
+                    <li className="flex items-start gap-2">
+                      <Check className="w-4 h-4 mt-0.5 flex-shrink-0 text-[#10B981]" />
+                      <span className="text-[#5B6BA8]">24/7 support</span>
+                    </li>
+                  )}
+                </ul>
+
+                <Link
+                  href={tier.id === 'advanced' ? '/contact' : '/auth/signup'}
+                  className={`w-full py-3 rounded-lg font-semibold flex items-center justify-center gap-2 transition-all hover:-translate-y-0.5 ${
+                    isPopular
+                      ? 'bg-[#394C9A] text-white hover:bg-[#5B6BA8]'
+                      : 'bg-gradient-to-r from-[#394C9A] to-[#5B6BA8] text-white hover:shadow-lg'
+                  }`}
+                >
+                  {tier.id === 'free' ? 'Start Free' : tier.id === 'advanced' ? 'Contact Sales' : 'Get Started'}
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            )
+          })}
         </div>
 
         {/* FAQ Section */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-12 mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-12 text-center">Frequently Asked Questions</h2>
+        <div className="bg-white rounded-2xl border border-[#D4DAF0] p-12 mb-12">
+          <h2 className="font-['Quicksand'] text-3xl font-semibold text-[#394C9A] mb-3 text-center">Frequently Asked Questions</h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-[#394C9A] to-[#A8D4E6] mx-auto rounded-full mb-10" />
           
           <div className="grid md:grid-cols-2 gap-8">
             {[
@@ -147,22 +185,24 @@ export default function PricingPage() {
               }
             ].map((item, i) => (
               <div key={i}>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">{item.q}</h3>
-                <p className="text-gray-600">{item.a}</p>
+                <h3 className="font-['Quicksand'] text-lg font-semibold text-[#394C9A] mb-3">{item.q}</h3>
+                <p className="text-[#5B6BA8]">{item.a}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* CTA Section */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-12 text-center text-white">
-          <h2 className="text-3xl font-bold mb-4">Ready to get started?</h2>
-          <p className="text-xl text-blue-100 mb-8">Join thousands of people already using ellio legal</p>
-          <Link href="/auth/signup" className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
+        <div className="bg-gradient-to-r from-[#394C9A] to-[#5B6BA8] rounded-2xl p-12 text-center text-white">
+          <h2 className="font-['Quicksand'] text-3xl font-bold mb-4">Ready to get started?</h2>
+          <p className="text-xl text-white/80 mb-8">Join thousands of people already using ellio legal</p>
+          <Link href="/auth/signup" className="inline-block bg-white text-[#394C9A] px-8 py-3 rounded-lg font-semibold hover:bg-[#F5F7FC] transition-colors">
             Create Free Account
           </Link>
         </div>
       </div>
+      
+      <Footer />
     </div>
   )
 }

@@ -5,7 +5,6 @@ import { useAuth } from '../AuthContext'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Mail, Lock, ArrowRight, Eye, EyeOff } from 'lucide-react'
-import { colors } from '@/src/theme/ellio-v2.0/tokens.colors'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -32,29 +31,18 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-[#F5F7FC] via-white to-[#E8ECF8] flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         {/* Logo */}
-        <Link href="/" className="flex items-center justify-center gap-2 mb-8">
-          <svg className="w-10 h-10" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style={{stopColor: colors.brand.indigo[500], stopOpacity: 1}} />
-                <stop offset="100%" style={{stopColor: colors.brand.indigo[700], stopOpacity: 1}} />
-              </linearGradient>
-            </defs>
-            <ellipse cx="100" cy="110" rx="45" ry="50" fill="url(#logoGrad)"/>
-            <circle cx="100" cy="60" r="35" fill="url(#logoGrad)"/>
-            <ellipse cx="75" cy="50" rx="20" ry="30" fill="url(#logoGrad)" opacity="0.9"/>
-            <ellipse cx="125" cy="50" rx="20" ry="30" fill="url(#logoGrad)" opacity="0.9"/>
-          </svg>
-          <span className="text-2xl font-bold text-gray-900">ellio legal</span>
+        <Link href="/" className="flex items-center justify-center gap-3 mb-8">
+          <img src="/ellio-logo.svg" alt="ellio legal" className="w-10 h-10" />
+          <span className="font-['Quicksand'] text-2xl font-bold text-[#394C9A]">ellio legal</span>
         </Link>
 
         {/* Card */}
-        <div className="bg-white rounded-2xl shadow-lg p-8">
-          <h1 className="text-2xl font-bold text-gray-900 mb-2">Welcome back</h1>
-          <p className="text-gray-600 mb-8">Sign in to access your legal assistant</p>
+        <div className="bg-white rounded-2xl shadow-lg border border-[#D4DAF0] p-8">
+          <h1 className="font-['Quicksand'] text-2xl font-bold text-[#394C9A] mb-2">Welcome back</h1>
+          <p className="text-[#5B6BA8] mb-8">Sign in to access your legal assistant</p>
 
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6 text-sm">
@@ -64,45 +52,45 @@ export default function LoginPage() {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[#394C9A] mb-2">
                 Email address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#5B6BA8]" />
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-3 border border-[#D4DAF0] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#394C9A] focus:border-transparent"
                   placeholder="you@example.com"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-[#394C9A] mb-2">
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-[#5B6BA8]" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full pl-10 pr-10 py-3 border border-[#D4DAF0] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#394C9A] focus:border-transparent"
                   placeholder="••••••••"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#5B6BA8] hover:text-[#394C9A]"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
               </div>
-              <Link href="/auth/forgot-password" className="text-sm text-blue-600 hover:text-blue-700 mt-2 inline-block">
+              <Link href="/auth/forgot-password" className="text-sm text-[#394C9A] hover:text-[#5B6BA8] mt-2 inline-block">
                 Forgot password?
               </Link>
             </div>
@@ -110,17 +98,17 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-semibold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-[#394C9A] to-[#5B6BA8] hover:shadow-lg disabled:opacity-50 text-white font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2"
             >
               {loading ? 'Signing in...' : 'Sign in'}
               {!loading && <ArrowRight className="w-5 h-5" />}
             </button>
           </form>
 
-          <div className="mt-6 pt-6 border-t border-gray-200">
-            <p className="text-center text-gray-600 text-sm">
+          <div className="mt-6 pt-6 border-t border-[#D4DAF0]">
+            <p className="text-center text-[#5B6BA8] text-sm">
               Don't have an account?{' '}
-              <Link href="/auth/signup" className="text-blue-600 hover:text-blue-700 font-semibold">
+              <Link href="/auth/signup" className="text-[#394C9A] hover:text-[#5B6BA8] font-semibold">
                 Sign up
               </Link>
             </p>
@@ -128,7 +116,7 @@ export default function LoginPage() {
         </div>
 
         {/* Demo notice */}
-        <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4 text-sm text-blue-700">
+        <div className="mt-6 bg-[#E8ECF8] border border-[#D4DAF0] rounded-lg p-4 text-sm text-[#394C9A]">
           <p className="font-medium mb-2">Demo credentials:</p>
           <p>Email: demo@ellio.legal</p>
           <p>Password: demo123</p>

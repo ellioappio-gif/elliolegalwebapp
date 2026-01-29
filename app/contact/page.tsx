@@ -3,6 +3,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Mail, Phone, MapPin, Send } from 'lucide-react'
+import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 
 export default function PublicContactPage() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
@@ -29,14 +31,14 @@ export default function PublicContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-12">
-          <Link href="/" className="text-blue-600 hover:text-blue-700 mb-4 inline-block">
-            ← Back to Home
-          </Link>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Contact Us</h1>
-          <p className="text-xl text-gray-600">Have questions? We'd love to hear from you. Send us a message!</p>
+    <div className="min-h-screen bg-[#F5F7FC]">
+      <Navigation />
+      
+      <div className="max-w-6xl mx-auto py-16 px-4">
+        <div className="mb-12 text-center">
+          <h1 className="font-['Quicksand'] text-4xl md:text-5xl font-semibold text-[#394C9A] mb-4">Contact Us</h1>
+          <div className="w-20 h-1 bg-gradient-to-r from-[#394C9A] to-[#A8D4E6] mx-auto rounded-full mb-4" />
+          <p className="text-xl text-[#5B6BA8]">Have questions? We'd love to hear from you. Send us a message!</p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 mb-12">
@@ -61,20 +63,21 @@ export default function PublicContactPage() {
               description: 'United States'
             }
           ].map((item, i) => (
-            <div key={i} className="bg-white rounded-xl border border-gray-200 p-6 text-center hover:shadow-lg transition-shadow">
-              <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mx-auto mb-4">
-                <item.icon className="w-6 h-6 text-blue-600" />
+            <div key={i} className="bg-white rounded-2xl border border-[#D4DAF0] p-6 text-center hover:shadow-lg hover:-translate-y-1 transition-all">
+              <div className="w-12 h-12 rounded-lg bg-[#E8ECF8] flex items-center justify-center mx-auto mb-4">
+                <item.icon className="w-6 h-6 text-[#394C9A]" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
-              <p className="font-medium text-gray-700 mb-1">{item.content}</p>
-              <p className="text-sm text-gray-600">{item.description}</p>
+              <h3 className="font-['Quicksand'] text-lg font-semibold text-[#394C9A] mb-2">{item.title}</h3>
+              <p className="font-medium text-[#394C9A] mb-1">{item.content}</p>
+              <p className="text-sm text-[#5B6BA8]">{item.description}</p>
             </div>
           ))}
         </div>
 
         {/* Contact Form */}
-        <div className="bg-white rounded-xl border border-gray-200 p-8 md:p-12 max-w-2xl mx-auto">
-          <h2 className="text-2xl font-bold text-gray-900 mb-8">Send us a Message</h2>
+        <div className="bg-white rounded-2xl border border-[#D4DAF0] p-8 md:p-12 max-w-2xl mx-auto">
+          <h2 className="font-['Quicksand'] text-2xl font-bold text-[#394C9A] mb-3">Send us a Message</h2>
+          <div className="w-12 h-1 bg-gradient-to-r from-[#394C9A] to-[#A8D4E6] rounded-full mb-8" />
 
           {submitted && (
             <div className="bg-green-50 border border-green-200 text-green-700 px-6 py-4 rounded-lg mb-6">
@@ -84,40 +87,40 @@ export default function PublicContactPage() {
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Name</label>
+              <label className="block text-sm font-medium text-[#394C9A] mb-2">Name</label>
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 border border-[#D4DAF0] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#394C9A]"
                 placeholder="Your name"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+              <label className="block text-sm font-medium text-[#394C9A] mb-2">Email</label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 border border-[#D4DAF0] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#394C9A]"
                 placeholder="your@email.com"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
+              <label className="block text-sm font-medium text-[#394C9A] mb-2">Message</label>
               <textarea
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
                 required
                 rows={6}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+                className="w-full px-4 py-3 border border-[#D4DAF0] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#394C9A] resize-none"
                 placeholder="Tell us how we can help..."
               />
             </div>
@@ -125,17 +128,17 @@ export default function PublicContactPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2 transition-colors"
+              className="w-full bg-gradient-to-r from-[#394C9A] to-[#5B6BA8] hover:shadow-lg disabled:opacity-50 text-white font-semibold py-3 rounded-lg flex items-center justify-center gap-2 transition-all"
             >
               {loading ? 'Sending...' : 'Send Message'}
               {!loading && <Send className="w-5 h-5" />}
             </button>
           </form>
 
-          <div className="mt-8 p-6 bg-blue-50 rounded-lg border border-blue-200">
-            <p className="text-sm text-gray-700">
-              <strong>Already a user?</strong> Log in to your{' '}
-              <Link href="/dashboard" className="text-blue-600 hover:text-blue-700 font-semibold">
+          <div className="mt-8 p-6 bg-[#E8ECF8] rounded-lg border border-[#D4DAF0]">
+            <p className="text-sm text-[#5B6BA8]">
+              <strong className="text-[#394C9A]">Already a user?</strong> Log in to your{' '}
+              <Link href="/dashboard" className="text-[#394C9A] hover:text-[#5B6BA8] font-semibold">
                 dashboard
               </Link>
               {' '}to contact us directly through your account.
@@ -143,6 +146,8 @@ export default function PublicContactPage() {
           </div>
         </div>
       </div>
+      
+      <Footer />
     </div>
   )
 }

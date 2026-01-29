@@ -6,38 +6,56 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-gray-300 py-12">
+    <footer className="bg-[#F5F7FC] border-t border-[#D4DAF0] py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          <div>
-            <h3 className="text-white text-lg font-semibold mb-4">ellio legal</h3>
-            <p>AI-powered legal assistant helping everyday people understand their legal situation.</p>
+        <div className="text-center mb-8">
+          {/* Logo */}
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <img 
+              src="https://ellio.solutions/logo.png" 
+              alt="ellio" 
+              className="w-14 h-14 rounded-xl"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+              }}
+            />
           </div>
-          <div>
-            <h4 className="text-white font-semibold mb-4">Product</h4>
-            <ul className="space-y-2">
-              <li><Link href="/" className="hover:text-white transition">Home</Link></li>
-              <li><Link href="/auth/login" className="hover:text-white transition">Sign In</Link></li>
-              <li><Link href="/auth/signup" className="hover:text-white transition">Sign Up</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-white font-semibold mb-4">Company</h4>
-            <ul className="space-y-2">
-              <li><Link href="/contact" className="hover:text-white transition">Contact</Link></li>
-              <li><Link href="/pricing" className="hover:text-white transition">Pricing</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-white font-semibold mb-4">Legal</h4>
-            <ul className="space-y-2">
-              <li><Link href="/terms" className="hover:text-white transition">Terms of Service</Link></li>
-              <li><Link href="/privacy" className="hover:text-white transition">Privacy Policy</Link></li>
-            </ul>
-          </div>
+          <h3 className="font-['Quicksand'] text-2xl font-semibold text-[#394C9A] mb-2">ellio legal</h3>
+          <p className="text-[#5B6BA8] max-w-md mx-auto">
+            AI-powered legal guidance for everyone. Not a lawyer, just helpful.
+          </p>
         </div>
-        <div className="border-t border-gray-700 pt-8">
-          <p className="text-center text-gray-400">
+        
+        {/* Links */}
+        <div className="flex justify-center gap-8 flex-wrap mb-8">
+          <Link href="/" className="text-[#394C9A] hover:text-[#5B6BA8] font-medium transition">
+            Home
+          </Link>
+          <Link href="/pricing" className="text-[#394C9A] hover:text-[#5B6BA8] font-medium transition">
+            Pricing
+          </Link>
+          <Link href="/contact" className="text-[#394C9A] hover:text-[#5B6BA8] font-medium transition">
+            Contact
+          </Link>
+          <Link href="/terms" className="text-[#394C9A] hover:text-[#5B6BA8] font-medium transition">
+            Terms
+          </Link>
+          <Link href="/privacy" className="text-[#394C9A] hover:text-[#5B6BA8] font-medium transition">
+            Privacy
+          </Link>
+        </div>
+        
+        {/* Disclaimer */}
+        <div className="bg-white border border-[#D4DAF0] rounded-xl p-4 max-w-2xl mx-auto mb-8">
+          <p className="text-sm text-[#6B7280] text-center">
+            <strong>Disclaimer:</strong> ellio legal provides general legal information, not legal advice. 
+            For specific legal matters, consult a licensed attorney in your jurisdiction.
+          </p>
+        </div>
+        
+        {/* Copyright */}
+        <div className="text-center">
+          <p className="text-[#5B6BA8] text-sm">
             &copy; {currentYear} ellio legal. All rights reserved.
           </p>
         </div>
