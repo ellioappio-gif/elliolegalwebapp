@@ -248,7 +248,7 @@ export default function Hero() {
             </p>
           </div>
         </div>
-      }
+      </div>
     </div>
   )
 }
