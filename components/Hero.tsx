@@ -10,7 +10,7 @@ export default function Hero() {
           <Link href="/" className="logo-link">
             <img 
               className="logo-icon" 
-              src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiMzOTRDOUEiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSI+CjxwYXRoIGQ9Ik0yMSAxNmgtN2wtMi0zaDlWNmgtMmwtMi0zaDE3djE3aC0yeiIgZmlsbD0id2hpdGUiLz4KPHN2Zz4K" 
+              src="/ellio-logo.svg" 
               alt="ellio legal" 
             />
             <span className="logo-text">ellio legal</span>

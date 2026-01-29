@@ -46,6 +46,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="alternate icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>ellio legal - AI-Powered Legal Guidance</title>
+        <meta name="description" content="Democratizing legal help through AI-powered guidance and attorney matching. Making legal services affordable, accessible, and available 24/7." />
         {/* Google Analytics */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}`}
