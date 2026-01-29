@@ -1,54 +1,77 @@
 'use client'
 
 import Link from 'next/link'
+import { ArrowRight, CheckCircle, Sparkles } from 'lucide-react'
 
 export default function CTA() {
   return (
-    <section id="contact" className="py-20">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main CTA Box */}
-        <div className="bg-gradient-to-r from-[#A8D4E6] to-[#C5E5F2] rounded-3xl p-10 text-center text-[#394C9A] mb-10">
-          <h2 className="font-['Quicksand'] text-3xl md:text-4xl font-bold mb-4">Ready to Get Started?</h2>
-          <p className="text-lg mb-8 max-w-xl mx-auto">
-            Join thousands who&apos;ve saved money and stress with AI-powered legal guidance.
+    <section className="py-24 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#394C9A] via-[#5B6BA8] to-[#394C9A]" />
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-white rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-white rounded-full blur-3xl" />
+      </div>
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 text-white px-6 py-2.5 rounded-full font-semibold text-sm mb-8">
+            <Sparkles className="w-4 h-4" />
+            <span>Join 50,000+ Happy Users</span>
+          </div>
+
+          {/* Heading */}
+          <h2 className="font-['Quicksand'] text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            Ready to Simplify<br />Your Legal Life?
+          </h2>
+          
+          <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed">
+            Start your free trial today. No credit card required. 
+            Cancel anytime. Get instant access to AI legal assistance.
           </p>
           
-          {/* Perks */}
-          <div className="flex justify-center gap-4 flex-wrap mb-8">
-            {['No credit card required', '7-day free trial', 'Cancel anytime'].map((perk, i) => (
-              <div key={i} className="bg-white/60 px-4 py-2 rounded-lg font-semibold flex items-center gap-2">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-                {perk}
+          {/* Benefits Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
+            {[
+              'Free 14-day trial',
+              'No credit card needed',
+              'Cancel anytime',
+              'Instant access',
+              '24/7 AI support',
+              'Money-back guarantee'
+            ].map((benefit, i) => (
+              <div key={i} className="flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 px-6 py-4 rounded-xl">
+                <CheckCircle className="w-5 h-5 text-white flex-shrink-0" />
+                <span className="text-white font-medium">{benefit}</span>
               </div>
             ))}
           </div>
-          
-          <Link 
-            href="/auth/signup" 
-            className="inline-block bg-[#394C9A] text-white px-10 py-4 rounded-lg font-semibold text-lg hover:bg-[#5B6BA8] transition-all"
-          >
-            Start Your Free Trial
-          </Link>
-        </div>
-        
-        {/* Secondary CTA */}
-        <div className="flex gap-6 justify-center flex-wrap">
-          <Link 
-            href="/contact" 
-            className="bg-gradient-to-r from-[#394C9A] to-[#5B6BA8] text-white px-8 py-3 rounded-lg font-semibold hover:-translate-y-0.5 hover:shadow-xl transition-all"
-          >
-            Contact Us
-          </Link>
-          <Link 
-            href="/pricing" 
-            className="border-2 border-[#394C9A] text-[#394C9A] px-8 py-3 rounded-lg font-semibold hover:bg-[#394C9A] hover:text-white transition-all"
-          >
-            View Pricing
-          </Link>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <Link 
+              href="/auth/signup" 
+              className="group inline-flex items-center justify-center gap-3 bg-white text-[#394C9A] px-10 py-5 rounded-xl font-bold text-lg hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
+            >
+              Start Free Trial
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <Link 
+              href="/pricing" 
+              className="inline-flex items-center justify-center gap-3 border-2 border-white text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-white hover:text-[#394C9A] transition-all duration-300"
+            >
+              View Pricing
+            </Link>
+          </div>
+
+          {/* Social Proof */}
+          <p className="text-white/80 text-sm">
+            Trusted by over 50,000 users • Rated 4.9/5 on major review platforms
+          </p>
         </div>
       </div>
     </section>
   );
 }
+
