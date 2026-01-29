@@ -22,15 +22,15 @@ export default function Navigation() {
             </div>
           </Link>
           <div className="hidden md:flex items-center gap-6">
+            <Link href="/features" className="text-[#5B6BA8] hover:text-[#394C9A] transition font-medium text-sm">
+              Features
+            </Link>
             <Link href="/pricing" className="text-[#5B6BA8] hover:text-[#394C9A] transition font-medium text-sm">
               Pricing
             </Link>
-            <a href="/#features" className="text-[#5B6BA8] hover:text-[#394C9A] transition font-medium text-sm">
-              Features
-            </a>
-            <a href="/#services" className="text-[#5B6BA8] hover:text-[#394C9A] transition font-medium text-sm">
-              Services
-            </a>
+            <Link href="/about" className="text-[#5B6BA8] hover:text-[#394C9A] transition font-medium text-sm">
+              About
+            </Link>
             <Link href="/contact" className="text-[#5B6BA8] hover:text-[#394C9A] transition font-medium text-sm">
               Contact
             </Link>

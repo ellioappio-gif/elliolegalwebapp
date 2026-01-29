@@ -28,8 +28,14 @@ export default function Footer() {
           <Link href="/" className="text-[#394C9A] hover:text-[#5B6BA8] font-medium transition">
             Home
           </Link>
+          <Link href="/features" className="text-[#394C9A] hover:text-[#5B6BA8] font-medium transition">
+            Features
+          </Link>
           <Link href="/pricing" className="text-[#394C9A] hover:text-[#5B6BA8] font-medium transition">
             Pricing
+          </Link>
+          <Link href="/about" className="text-[#394C9A] hover:text-[#5B6BA8] font-medium transition">
+            About
           </Link>
           <Link href="/contact" className="text-[#394C9A] hover:text-[#5B6BA8] font-medium transition">
             Contact
