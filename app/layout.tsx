@@ -74,10 +74,3 @@ export default function RootLayout({
     </html>
   );
 }
-          {children}
-          <Footer />
-        </ClientProviders>
-      </body>
-    </html>
-  );
-}
