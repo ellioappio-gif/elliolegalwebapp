@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { MessageCircle, X } from 'lucide-react'
 
 export default function InvestorPage() {
   const [chatOpen, setChatOpen] = useState(false)
@@ -48,750 +47,250 @@ export default function InvestorPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-900 to-slate-800">
-      <style jsx global>{`
-        :root {
-          --deep-indigo: #2D2B69;
-          --medium-blue: #4A4FA5; 
-          --sky-blue: #7BB3F0;
-          --sage-green: #8AA68A;
-          --warm-gold: #D4A574;
-          --soft-pink: #E8A8A8;
-          --elephant-gray: #E8E1DA;
-        }
-
-        body {
-          margin: 0;
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-          line-height: 1.6;
-          color: #2D2B69;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          overflow-x: hidden;
-        }
-
-        .hero {
-          background: linear-gradient(135deg, var(--deep-indigo) 0%, var(--medium-blue) 50%, var(--sky-blue) 100%);
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          color: white;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .hero-title {
-          font-size: 4rem;
-          font-weight: 800;
-          margin: 0 0 1rem 0;
-          text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-          animation: fadeInUp 1s ease-out;
-        }
-
-        .hero-subtitle {
-          font-size: 1.5rem;
-          opacity: 0.9;
-          max-width: 800px;
-          margin: 0 auto 2rem auto;
-          animation: fadeInUp 1s ease-out 0.2s both;
-        }
-
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .section-alt {
-          background: rgba(255,255,255,0.97);
-          padding: 5rem 2rem;
-        }
-
-        section {
-          padding: 5rem 2rem;
-        }
-
-        .content {
-          max-width: 1200px;
-          margin: 0 auto;
-        }
-
-        h2 {
-          font-size: 3rem;
-          font-weight: 700;
-          text-align: center;
-          margin-bottom: 3rem;
-          color: var(--deep-indigo);
-        }
-
-        .subtitle {
-          font-size: 1.25rem;
-          text-align: center;
-          margin-bottom: 3rem;
-          color: var(--medium-blue);
-          max-width: 800px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-
-        .stats-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 2rem;
-          margin: 3rem 0;
-        }
-
-        .stat-card {
-          background: linear-gradient(135deg, var(--deep-indigo), var(--medium-blue));
-          padding: 2rem;
-          border-radius: 12px;
-          text-align: center;
-          color: white;
-          box-shadow: 0 10px 30px rgba(45, 43, 105, 0.3);
-          transform: translateY(0);
-          transition: all 0.3s ease;
-        }
-
-        .stat-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 20px 40px rgba(45, 43, 105, 0.4);
-        }
-
-        .stat-number {
-          font-size: 3rem;
-          font-weight: 800;
-          margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-          font-size: 1.1rem;
-          opacity: 0.9;
-        }
-
-        .cards-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-          gap: 2rem;
-          margin: 3rem 0;
-        }
-
-        .card {
-          background: white;
-          padding: 2rem;
-          border-radius: 16px;
-          box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-          border: 1px solid rgba(255,255,255,0.2);
-          backdrop-filter: blur(10px);
-          transition: all 0.3s ease;
-        }
-
-        .card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 16px 48px rgba(0,0,0,0.15);
-        }
-
-        .card h3 {
-          color: var(--deep-indigo);
-          margin-bottom: 1rem;
-          font-size: 1.5rem;
-        }
-
-        .pricing-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 1.5rem;
-          margin: 3rem 0;
-        }
-
-        .pricing-card {
-          background: white;
-          border-radius: 12px;
-          padding: 2rem;
-          text-align: center;
-          box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-          transition: all 0.3s ease;
-          border: 2px solid transparent;
-        }
-
-        .pricing-card.featured {
-          border-color: var(--sky-blue);
-          transform: scale(1.05);
-        }
-
-        .pricing-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 16px 32px rgba(0,0,0,0.15);
-        }
-
-        .pricing-tier {
-          font-size: 1.5rem;
-          font-weight: 700;
-          color: var(--deep-indigo);
-          margin-bottom: 0.5rem;
-        }
-
-        .pricing-price {
-          font-size: 2.5rem;
-          font-weight: 800;
-          color: var(--sky-blue);
-        }
-
-        .pricing-period {
-          color: var(--medium-blue);
-          margin-bottom: 1rem;
-        }
-
-        .pricing-features {
-          color: #666;
-          line-height: 1.8;
-        }
-
-        .revenue-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 2rem;
-          margin: 3rem 0;
-        }
-
-        .revenue-card {
-          background: white;
-          padding: 2rem;
-          border-radius: 12px;
-          display: flex;
-          align-items: flex-start;
-          gap: 1rem;
-          box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-          transition: all 0.3s ease;
-        }
-
-        .revenue-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 16px 32px rgba(0,0,0,0.15);
-        }
-
-        .revenue-icon {
-          width: 60px;
-          height: 60px;
-          background: linear-gradient(135deg, var(--sky-blue), var(--medium-blue));
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-        }
-
-        .revenue-icon svg {
-          width: 28px;
-          height: 28px;
-          color: white;
-          stroke: currentColor;
-          stroke-width: 2;
-          fill: none;
-        }
-
-        .revenue-content h4 {
-          color: var(--deep-indigo);
-          margin-bottom: 0.5rem;
-          font-size: 1.25rem;
-        }
-
-        .revenue-content p {
-          color: #666;
-          line-height: 1.6;
-          margin: 0;
-        }
-
-        .guarantee {
-          background: linear-gradient(135deg, var(--sage-green), var(--warm-gold));
-          padding: 4rem;
-          border-radius: 20px;
-          text-align: center;
-          color: white;
-          margin: 3rem 0;
-        }
-
-        .guarantee h2 {
-          color: white;
-          font-size: 3rem;
-          margin-bottom: 1rem;
-        }
-
-        .guarantee-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 2rem;
-          margin-top: 3rem;
-        }
-
-        .guarantee-item h4 {
-          font-size: 1.25rem;
-          margin-bottom: 1rem;
-          color: white;
-        }
-
-        .guarantee-item p {
-          opacity: 0.9;
-          line-height: 1.6;
-        }
-
-        .tech-features {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-          gap: 2rem;
-          margin: 3rem 0;
-        }
-
-        .tech-feature {
-          background: white;
-          padding: 2rem;
-          border-radius: 12px;
-          box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-        }
-
-        .tech-badge {
-          background: linear-gradient(135deg, var(--sky-blue), var(--medium-blue));
-          color: white;
-          padding: 0.25rem 0.75rem;
-          border-radius: 20px;
-          font-size: 0.875rem;
-          font-weight: 600;
-          margin-right: 0.5rem;
-        }
-
-        .tech-feature h4 {
-          color: var(--deep-indigo);
-          margin-bottom: 1rem;
-          font-size: 1.25rem;
-        }
-
-        .tech-feature p {
-          color: #666;
-          line-height: 1.6;
-        }
-
-        .projections {
-          background: white;
-          border-radius: 12px;
-          overflow: hidden;
-          box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-          margin: 3rem 0;
-        }
-
-        .projections-row {
-          display: grid;
-          grid-template-columns: 2fr repeat(5, 1fr);
-          gap: 1rem;
-          padding: 1.5rem;
-          border-bottom: 1px solid #eee;
-          align-items: center;
-        }
-
-        .projections-row.header {
-          background: linear-gradient(135deg, var(--deep-indigo), var(--medium-blue));
-          color: white;
-          font-weight: 600;
-        }
-
-        .projections-row:last-child {
-          border-bottom: none;
-        }
-
-        .label {
-          font-weight: 600;
-          color: var(--deep-indigo);
-        }
-
-        .value {
-          text-align: center;
-          font-weight: 500;
-          padding: 0.5rem;
-        }
-
-        .value.highlight {
-          background: linear-gradient(135deg, var(--sky-blue), var(--medium-blue));
-          color: white;
-          border-radius: 8px;
-          font-weight: 700;
-        }
-
-        .team-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 2rem;
-          margin: 3rem 0;
-        }
-
-        .team-member {
-          background: white;
-          padding: 2rem;
-          border-radius: 12px;
-          text-align: center;
-          box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-        }
-
-        .team-avatar {
-          width: 80px;
-          height: 80px;
-          background: linear-gradient(135deg, var(--sky-blue), var(--medium-blue));
-          color: white;
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 1.5rem;
-          font-weight: 700;
-          margin: 0 auto 1rem auto;
-        }
-
-        .team-member h4 {
-          color: var(--deep-indigo);
-          margin-bottom: 0.5rem;
-          font-size: 1.25rem;
-        }
-
-        .role {
-          color: var(--sky-blue);
-          font-weight: 600;
-          margin-bottom: 1rem;
-        }
-
-        .team-member p {
-          color: #666;
-          line-height: 1.6;
-        }
-
-        .investment-cta {
-          background: linear-gradient(135deg, var(--deep-indigo), var(--sky-blue));
-          padding: 4rem;
-          border-radius: 20px;
-          text-align: center;
-          color: white;
-          margin: 3rem 0;
-        }
-
-        .investment-cta h2 {
-          color: white;
-          font-size: 3rem;
-          margin-bottom: 1rem;
-        }
-
-        .investment-details {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 2rem;
-          margin: 3rem 0;
-        }
-
-        .investment-item {
-          text-align: center;
-        }
-
-        .investment-item .value {
-          font-size: 2.5rem;
-          font-weight: 800;
-          margin-bottom: 0.5rem;
-        }
-
-        .investment-item .label {
-          opacity: 0.9;
-          font-size: 1.1rem;
-        }
-
-        .cta-btn {
-          display: inline-block;
-          padding: 1rem 2rem;
-          background: white;
-          color: var(--deep-indigo);
-          text-decoration: none;
-          border-radius: 8px;
-          font-weight: 600;
-          transition: all 0.3s ease;
-          border: none;
-          cursor: pointer;
-          font-size: 1.1rem;
-        }
-
-        .cta-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-        }
-
-        .cta-btn-large {
-          padding: 1.5rem 3rem;
-          font-size: 1.25rem;
-        }
-
-        .comparison-table {
-          background: white;
-          border-radius: 12px;
-          overflow: hidden;
-          box-shadow: 0 8px 24px rgba(0,0,0,0.1);
-          margin: 3rem 0;
-        }
-
-        .comparison-table table {
-          width: 100%;
-          border-collapse: collapse;
-        }
-
-        .comparison-table th,
-        .comparison-table td {
-          padding: 1.5rem 1rem;
-          text-align: center;
-          border-bottom: 1px solid #eee;
-        }
-
-        .comparison-table th {
-          background: linear-gradient(135deg, var(--deep-indigo), var(--medium-blue));
-          color: white;
-          font-weight: 600;
-        }
-
-        .comparison-table .highlight-col {
-          background: rgba(123, 179, 240, 0.1);
-          font-weight: 600;
-        }
-
-        .check {
-          color: #22c55e;
-          font-weight: 600;
-        }
-
-        .cross {
-          color: #ef4444;
-          font-weight: 600;
-        }
-
-        .chat-fob {
-          position: fixed;
-          bottom: 2rem;
-          right: 2rem;
-          z-index: 1000;
-          transition: all 0.3s ease;
-        }
-
-        .chat-fob.open .chat-window {
-          display: block;
-          animation: slideUp 0.3s ease-out;
-        }
-
-        .chat-fob-btn {
-          width: 60px;
-          height: 60px;
-          background: linear-gradient(135deg, var(--sky-blue), var(--medium-blue));
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-          transition: all 0.3s ease;
-        }
-
-        .chat-fob-btn:hover {
-          transform: scale(1.1);
-          box-shadow: 0 12px 32px rgba(0,0,0,0.3);
-        }
-
-        .chat-fob-btn img {
-          width: 24px;
-          height: 24px;
-        }
-
-        .chat-window {
-          display: none;
-          position: absolute;
-          bottom: 80px;
-          right: 0;
-          width: 350px;
-          height: 400px;
-          background: white;
-          border-radius: 12px;
-          box-shadow: 0 16px 48px rgba(0,0,0,0.2);
-          overflow: hidden;
-        }
-
-        @keyframes slideUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .chat-window-header {
-          background: linear-gradient(135deg, var(--deep-indigo), var(--sky-blue));
-          color: white;
-          padding: 1rem;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          justify-content: space-between;
-        }
-
-        .chat-window-header img {
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-        }
-
-        .chat-close {
-          background: none;
-          border: none;
-          color: white;
-          font-size: 1.5rem;
-          cursor: pointer;
-          padding: 0;
-          width: 24px;
-          height: 24px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .chat-window-messages {
-          height: 280px;
-          overflow-y: auto;
-          padding: 1rem;
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
-        }
-
-        .chat-msg {
-          display: flex;
-          align-items: flex-start;
-          gap: 0.5rem;
-        }
-
-        .chat-msg.user {
-          flex-direction: row-reverse;
-        }
-
-        .chat-msg-icon {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          flex-shrink: 0;
-        }
-
-        .chat-msg-content {
-          background: #f3f4f6;
-          padding: 0.75rem;
-          border-radius: 12px;
-          max-width: 80%;
-          line-height: 1.5;
-          font-size: 0.9rem;
-        }
-
-        .chat-msg.user .chat-msg-content {
-          background: var(--sky-blue);
-          color: white;
-        }
-
-        .chat-window-input {
-          padding: 1rem;
-          border-top: 1px solid #eee;
-          display: flex;
-          gap: 0.5rem;
-        }
-
-        .chat-window-input input {
-          flex: 1;
-          padding: 0.5rem;
-          border: 1px solid #ddd;
-          border-radius: 8px;
-          font-size: 0.9rem;
-        }
-
-        .chat-window-input button {
-          padding: 0.5rem 1rem;
-          background: var(--sky-blue);
-          color: white;
-          border: none;
-          border-radius: 8px;
-          cursor: pointer;
-          font-size: 0.9rem;
-          font-weight: 500;
-        }
-
-        footer {
-          background: var(--deep-indigo);
-          color: white;
-          padding: 3rem 2rem 2rem 2rem;
-          text-align: center;
-        }
-
-        .footer-logo {
-          width: 60px;
-          height: 60px;
-          margin: 0 auto 1rem auto;
-          display: block;
-        }
-
-        .footer-brand {
-          font-size: 1.5rem;
-          font-weight: 700;
-          margin-bottom: 0.5rem;
-        }
-
-        footer p {
-          opacity: 0.8;
-          margin-bottom: 0.5rem;
-        }
-
-        .footer-links {
-          margin-top: 2rem;
-          display: flex;
-          justify-content: center;
-          gap: 2rem;
-          flex-wrap: wrap;
-        }
-
-        .footer-links a {
-          color: white;
-          text-decoration: none;
-          opacity: 0.8;
-          transition: opacity 0.3s ease;
-        }
-
-        .footer-links a:hover {
-          opacity: 1;
-        }
-
-        @media (max-width: 768px) {
-          .hero-title {
-            font-size: 2.5rem;
-          }
-          
-          .hero-subtitle {
-            font-size: 1.25rem;
-          }
-          
-          h2 {
-            font-size: 2rem;
-          }
-          
-          .projections-row {
-            grid-template-columns: 1fr;
-            text-align: center;
-          }
-          
-          .chat-window {
-            width: 300px;
-          }
-        }
-      `}</style>
+    <>
+      {/* Navigation */}
+      <nav>
+        <div className="container">
+          <Link href="#" className="logo-link">
+            <img className="logo-icon" src="/ellio-logo.svg" alt="ellio" />
+            <span className="logo-text">ellio legal</span>
+            <span className="investor-badge">INVESTORS</span>
+          </Link>
+          <div className="nav-links">
+            <a href="#problem">Problem</a>
+            <a href="#market">Market</a>
+            <a href="#business">Business</a>
+            <a href="#team">Team</a>
+            <Link href="/">For Users</Link>
+            <Link href="/">For Attorneys</Link>
+            <a href="#invest" className="cta-btn">Invest Now</a>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="hero" id="home">
+        <div className="container">
+          <img 
+            src="/ellio-logo.svg" 
+            alt="ellio" 
+            className="hero-elephant"
+          />
+          <h1 className="hero-brand">ellio <span className="highlight">legal</span></h1>
+          <p className="hero-tagline">Democratizing Legal Access Through AI</p>
+          <p className="hero-subtitle">AI-powered legal guidance and attorney marketplace making legal services accessible, affordable, and available 24/7.</p>
+          <div className="hero-stats">
+            <div className="hero-stat">
+              <div className="hero-stat-value">$350B</div>
+              <div className="hero-stat-label">Legal Market</div>
+            </div>
+            <div className="hero-stat">
+              <div className="hero-stat-value">37%</div>
+              <div className="hero-stat-label">AI Legal CAGR</div>
+            </div>
+            <div className="hero-stat">
+              <div className="hero-stat-value">iOS</div>
+              <div className="hero-stat-label">Production Ready</div>
+            </div>
+            <div className="hero-stat">
+              <div className="hero-stat-value">50</div>
+              <div className="hero-stat-label">State Coverage</div>
+            </div>
+          </div>
+          <div className="hero-cta">
+            <a href="#invest" className="cta-btn cta-btn-large">View Investment</a>
+            <Link href="/" className="btn-secondary">Try Live Product</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Problem Section */}
+      <section id="problem">
+        <div className="text-center">
+          <h2>The Legal Access Crisis</h2>
+          <p className="subtitle">63% of Americans can't afford legal representation when they need it most.</p>
+        </div>
+        <div className="cards-grid">
+          <div className="card">
+            <div className="card-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </div>
+            <h3>High Cost Barrier</h3>
+            <p>Average attorney consultation: $300/hour. Document review: $200-500. Most Americans simply can't afford professional legal guidance when they need it.</p>
+          </div>
+          <div className="card">
+            <div className="card-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <h3>Complex Legal Language</h3>
+            <p>Legal documents are written in complex jargon that's impossible for regular people to understand, creating dependency on expensive professionals.</p>
+          </div>
+          <div className="card">
+            <div className="card-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+              </svg>
+            </div>
+            <h3>Limited Availability</h3>
+            <p>Attorneys work business hours only. Legal emergencies don't wait for 9-5. People need guidance immediately, not next week.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Market Opportunity */}
+      <div className="section-alt">
+        <div className="content">
+          <div className="text-center">
+            <h2>Massive Market Opportunity</h2>
+            <p className="subtitle">The legal industry is ripe for disruption with AI-powered solutions.</p>
+          </div>
+          <div className="market-grid">
+            <div className="market-card tam">
+              <div className="market-label">TAM</div>
+              <div className="market-value">$350B</div>
+              <div className="market-desc">Total US legal services market</div>
+            </div>
+            <div className="market-card sam">
+              <div className="market-label">SAM</div>
+              <div className="market-value">$28B</div>
+              <div className="market-desc">LegalTech serviceable market</div>
+            </div>
+            <div className="market-card som">
+              <div className="market-label">SOM</div>
+              <div className="market-value">$2.5B</div>
+              <div className="market-desc">AI legal tools by 2027</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Business Model */}
+      <section id="business">
+        <div className="text-center">
+          <h2>Scalable Business Model</h2>
+          <p className="subtitle">Multiple revenue streams with strong unit economics and clear path to profitability.</p>
+        </div>
+        <div className="stats-grid">
+          <div className="stat-card">
+            <div className="stat-number">6</div>
+            <div className="stat-label">Pricing Tiers</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-number">4</div>
+            <div className="stat-label">Revenue Streams</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-number">$24</div>
+            <div className="stat-label">Target ARPU/Month</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-number">80%</div>
+            <div className="stat-label">Gross Margin</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team */}
+      <div className="section-alt">
+        <div className="content">
+          <div className="text-center" id="team">
+            <h2>Experienced Team</h2>
+            <p className="subtitle">Legal tech veterans with AI expertise and proven track record.</p>
+          </div>
+          <div className="team-grid">
+            <div className="team-member">
+              <div className="team-avatar">CW</div>
+              <h4>Cody Williams</h4>
+              <div className="role">CEO & Founder</div>
+              <p>Serial entrepreneur with legal tech background and consumer app experience.</p>
+            </div>
+            <div className="team-member">
+              <div className="team-avatar">LA</div>
+              <h4>Legal Advisory</h4>
+              <div className="role">JD/MBA Board</div>
+              <p>Former BigLaw partners and legal aid directors ensuring compliance and quality.</p>
+            </div>
+            <div className="team-member">
+              <div className="team-avatar">AI</div>
+              <h4>AI Engineering</h4>
+              <div className="role">ML Team</div>
+              <p>AI researchers with experience at leading labs building production legal AI.</p>
+            </div>
+            <div className="team-member">
+              <div className="team-avatar">PD</div>
+              <h4>Product Team</h4>
+              <div className="role">Design & Engineering</div>
+              <p>Product veterans from LegalZoom, Notion, and Stripe building intuitive experiences.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Investment CTA */}
+      <section id="invest">
+        <div className="investment-cta">
+          <h2>Ready to Invest?</h2>
+          <p>Join us in democratizing legal access through AI. Seed round now open for strategic investors.</p>
+          <div className="investment-details">
+            <div className="investment-item">
+              <div className="value">Seed</div>
+              <div className="label">Round Stage</div>
+            </div>
+            <div className="investment-item">
+              <div className="value">$2.5M</div>
+              <div className="label">Target Raise</div>
+            </div>
+            <div className="investment-item">
+              <div className="value">100K</div>
+              <div className="label">Year 2 Users</div>
+            </div>
+            <div className="investment-item">
+              <div className="value">$4M</div>
+              <div className="label">Year 2 ARR</div>
+            </div>
+          </div>
+          <a 
+            href="mailto:investors@elliolegal.com?subject=Investment%20Inquiry" 
+            className="cta-btn cta-btn-large"
+          >
+            Request Pitch Deck
+          </a>
+        </div>
+      </section>
+
+      {/* Chat Bot */}
+      <div className={`chat-fob ${chatOpen ? 'open' : ''}`}>
+        <div className="chat-fob-btn" onClick={toggleChat}>
+          💬
+        </div>
+        <div className="chat-window">
+          <div className="chat-window-header">
+            <span>🐘 ellio investor chat</span>
+            <button className="chat-close" onClick={toggleChat}>×</button>
+          </div>
+          <div className="chat-window-messages">
+            {messages.map((msg, idx) => (
+              <div key={idx} className={`chat-msg ${msg.type}`}>
+                <div className="chat-msg-content">{msg.content}</div>
+              </div>
+            ))}
+          </div>
+          <div className="chat-window-input">
+            <input
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="Ask about investment..."
+              onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+            />
+            <button onClick={sendMessage}>Send</button>
+          </div>
+        </div>
+      </div>
 
       {/* Hero Section */}
       <div className="hero">
