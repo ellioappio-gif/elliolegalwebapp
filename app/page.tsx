@@ -1,124 +1,153 @@
+'use client'
+
+import { useState } from 'react'
+import Link from 'next/link'
+
 export default function Home() {
+  const [chatOpen, setChatOpen] = useState(false)
+
+  const toggleChat = () => setChatOpen(!chatOpen)
+
   return (
     <>
       {/* Hero Section */}
-      <section className="hero">
-        <div style={{
-          fontSize: '4rem',
-          marginBottom: '1.5rem',
-          position: 'relative',
-          zIndex: 1
-        }}>
-          🐘
-        </div>
-        <h1 className="hero-brand">
-          ellio <span className="highlight">legal</span>
-        </h1>
-        <p className="hero-tagline">AI-Powered Legal Case Management</p>
-        <p className="hero-subtitle">
-          Transform your legal practice with AI-powered insights, secure collaboration, 
-          and instant access to legal specialists.
-        </p>
-        
-        <div style={{
-          display: 'flex',
-          gap: '2rem',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          marginBottom: '2rem'
-        }}>
-          <div style={{
-            textAlign: 'center',
-            padding: '1rem 1.5rem',
-            background: 'var(--white)',
-            borderRadius: '12px',
-            border: '1px solid var(--soft-blue)'
-          }}>
-            <div style={{
-              fontFamily: 'Quicksand, sans-serif',
-              fontSize: '1.75rem',
-              fontWeight: 700,
-              color: 'var(--deep-indigo)'
-            }}>$280B</div>
-            <div style={{
-              fontSize: '0.85rem',
-              color: 'var(--gray)'
-            }}>Market Size</div>
+      <section className="hero" id="home">
+        <div className="container">
+          <img 
+            src="/ellio-logo.svg" 
+            alt="ellio" 
+            className="hero-elephant"
+          />
+          <h1 className="hero-brand">ellio <span className="highlight">legal</span></h1>
+          <p className="hero-tagline">Democratizing Legal Access Through AI</p>
+          <p className="hero-subtitle">AI-powered legal guidance and attorney marketplace making legal services accessible, affordable, and available 24/7.</p>
+          <div className="hero-stats">
+            <div className="hero-stat">
+              <div className="hero-stat-value">$350B</div>
+              <div className="hero-stat-label">Legal Market</div>
+            </div>
+            <div className="hero-stat">
+              <div className="hero-stat-value">37%</div>
+              <div className="hero-stat-label">AI Legal CAGR</div>
+            </div>
+            <div className="hero-stat">
+              <div className="hero-stat-value">iOS</div>
+              <div className="hero-stat-label">Production Ready</div>
+            </div>
+            <div className="hero-stat">
+              <div className="hero-stat-value">50</div>
+              <div className="hero-stat-label">State Coverage</div>
+            </div>
           </div>
-          
-          <div style={{
-            textAlign: 'center',
-            padding: '1rem 1.5rem',
-            background: 'var(--white)',
-            borderRadius: '12px',
-            border: '1px solid var(--soft-blue)'
-          }}>
-            <div style={{
-              fontFamily: 'Quicksand, sans-serif',
-              fontSize: '1.75rem',
-              fontWeight: 700,
-              color: 'var(--deep-indigo)'
-            }}>1.3M</div>
-            <div style={{
-              fontSize: '0.85rem',
-              color: 'var(--gray)'
-            }}>Lawyers in US</div>
+          <div className="hero-cta">
+            <a href="#invest" className="cta-btn cta-btn-large">View Investment</a>
+            <Link href="/" className="btn-secondary">Try Live Product</Link>
           </div>
-        </div>
-        
-        <div style={{
-          display: 'flex',
-          gap: '1rem',
-          flexWrap: 'wrap',
-          justifyContent: 'center'
-        }}>
-          <button className="cta-btn cta-btn-large">Request Demo</button>
-          <button className="btn-secondary" style={{padding: '1rem 2.5rem', fontSize: '1.1rem'}}>
-            View Pitch Deck
-          </button>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="section-alt">
+      {/* Problem Section */}
+      <section id="problem">
+        <div className="text-center">
+          <h2>The Legal Access Crisis</h2>
+          <p className="subtitle">63% of Americans can't afford legal representation when they need it most.</p>
+        </div>
+        <div className="cards-grid">
+          <div className="card">
+            <div className="card-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+              </svg>
+            </div>
+            <h3>High Cost Barrier</h3>
+            <p>Average attorney consultation: $300/hour. Document review: $200-500. Most Americans simply can't afford professional legal guidance when they need it.</p>
+          </div>
+          <div className="card">
+            <div className="card-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <h3>Complex Legal Language</h3>
+            <p>Legal documents are written in complex jargon that's impossible for regular people to understand, creating dependency on expensive professionals.</p>
+          </div>
+          <div className="card">
+            <div className="card-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+              </svg>
+            </div>
+            <h3>Limited Availability</h3>
+            <p>Attorneys work business hours only. Legal emergencies don't wait for 9-5. People need guidance immediately, not next week.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Market Opportunity */}
+      <div className="section-alt">
         <div className="content">
           <div className="text-center">
-            <h2>Our Solution</h2>
-            <p className="subtitle">ellio legal: AI-powered legal case management platform</p>
+            <h2>Massive Market Opportunity</h2>
+            <p className="subtitle">The legal industry is ripe for disruption with AI-powered solutions.</p>
           </div>
-          
-          <div className="cards-grid">
-            <div className="card">
-              <h3>AI Case Analysis</h3>
-              <p>Powered by Claude AI for instant contract and document analysis</p>
+          <div className="market-grid">
+            <div className="market-card tam">
+              <div className="market-label">TAM</div>
+              <div className="market-value">$350B</div>
+              <div className="market-desc">Total US legal services market</div>
             </div>
-            
-            <div className="card">
-              <h3>Secure Collaboration</h3>
-              <p>End-to-end encrypted communication with team members and clients</p>
+            <div className="market-card sam">
+              <div className="market-label">SAM</div>
+              <div className="market-value">$28B</div>
+              <div className="market-desc">LegalTech serviceable market</div>
             </div>
-            
-            <div className="card">
-              <h3>Lawyer Directory</h3>
-              <p>Connect with verified legal specialists in your practice area</p>
+            <div className="market-card som">
+              <div className="market-label">SOM</div>
+              <div className="market-value">$2.5B</div>
+              <div className="market-desc">AI legal tools by 2027</div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
       {/* Investment CTA */}
-      <section style={{
-        background: 'linear-gradient(135deg, var(--sky-blue), var(--light-sky))',
-        borderRadius: '20px',
-        padding: '3rem',
-        textAlign: 'center',
-        color: 'var(--deep-indigo)',
-        margin: '2rem 0'
-      }}>
-        <h2 style={{color: 'var(--deep-indigo)'}}>Ready to Transform Legal Practice?</h2>
-        <p className="subtitle">Join the future of AI-powered legal case management</p>
-        <button className="cta-btn cta-btn-large">Request Investment Deck</button>
+      <section id="invest">
+        <div className="investment-cta">
+          <h2>Ready to Invest?</h2>
+          <p>Join us in democratizing legal access through AI. Seed round now open for strategic investors.</p>
+          <div className="investment-details">
+            <div className="investment-item">
+              <div className="value">Seed</div>
+              <div className="label">Round Stage</div>
+            </div>
+            <div className="investment-item">
+              <div className="value">$2.5M</div>
+              <div className="label">Target Raise</div>
+            </div>
+            <div className="investment-item">
+              <div className="value">100K</div>
+              <div className="label">Year 2 Users</div>
+            </div>
+            <div className="investment-item">
+              <div className="value">$4M</div>
+              <div className="label">Year 2 ARR</div>
+            </div>
+          </div>
+          <a 
+            href="mailto:investors@elliolegal.com?subject=Investment%20Inquiry" 
+            className="cta-btn cta-btn-large"
+          >
+            Request Pitch Deck
+          </a>
+        </div>
       </section>
+
+      {/* Chat Bot */}
+      <div className={`chat-fob ${chatOpen ? 'open' : ''}`}>
+        <div className="chat-fob-btn" onClick={toggleChat}>
+          💬
+        </div>
+      </div>
     </>
   )
 }
